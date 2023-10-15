@@ -13,6 +13,7 @@ fun NavGraph(
         composable("screen_1"){
             Screen1()
         }
+        //Тестовые изменения
         composable("screen_2"){
             Screen2()
         }

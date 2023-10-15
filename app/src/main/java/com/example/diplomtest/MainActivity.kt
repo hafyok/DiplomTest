@@ -56,8 +56,6 @@ class MainActivity : ComponentActivity() {
                 MainScreen()
             }
         }
-
-
     }
 }
 
@@ -113,32 +111,7 @@ fun MyScreenContent(){
     val navController = rememberNavController()
 
     Scaffold(
-        /*topBar = {
-            TopAppBar(title = { Text(text = "Jetpack Compose") },
-                navigationIcon = {
-                    Icon(
-                        imageVector = Icons.Default.Menu,
-                        contentDescription = "Menu",
-                        modifier = Modifier.clickable {
 
-                        }
-                    )
-                },
-                actions = {
-                    Icon(imageVector = Icons.Default.Search,
-                        contentDescription = "Search",
-                        modifier = Modifier.clickable {
-
-                        })
-                    Icon(imageVector = Icons.Default.Settings,
-                        contentDescription = "Settings",
-                        modifier = Modifier.clickable {
-
-                        }
-                    )
-                })
-        },
-*/
         content = {paddingValues ->
             Column(
                 modifier = Modifier
