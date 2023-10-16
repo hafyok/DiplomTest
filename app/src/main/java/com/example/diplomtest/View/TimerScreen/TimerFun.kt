@@ -1,4 +1,4 @@
-package com.example.diplomtest
+package com.example.diplomtest.View.TimerScreen
 
 import android.os.CountDownTimer
 import android.util.Log

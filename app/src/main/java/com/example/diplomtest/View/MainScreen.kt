@@ -1,4 +1,4 @@
-package com.example.diplomtest
+package com.example.diplomtest.View
 
 import android.annotation.SuppressLint
 import androidx.compose.material.Scaffold
