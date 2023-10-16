@@ -7,9 +7,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.navigation.compose.rememberNavController
+
 
 @Composable
 fun BottomNavigation(
@@ -47,4 +50,11 @@ fun BottomNavigation(
             )
         }
     }
+}
+
+@Preview
+@Composable
+fun BottomNavigationPreview(){
+    val navController = rememberNavController()
+    BottomNavigation(navController = navController)
 }
