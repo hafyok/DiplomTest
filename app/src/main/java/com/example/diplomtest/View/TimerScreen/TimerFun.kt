@@ -33,6 +33,10 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.diplomtest.MainViewModel
+import com.example.diplomtest.data.TimerSessionData
+import com.example.diplomtest.data.TimerSessionEntity
 //import androidx.lifecycle.viewmodel.compose.viewModel
 import kotlinx.coroutines.delay
 import java.lang.Math.PI
@@ -130,6 +134,7 @@ fun Timer(
     initialValue: Float = 1f,
     strokeWidth: Dp = 5.dp
 ) {
+    val viewModel: MainViewModel = viewModel()
     var size by remember {
         mutableStateOf(IntSize.Zero)
     }
@@ -197,6 +202,8 @@ fun Timer(
                 if(currentTime <= 0L) {
                     currentTime = totalTime
                     isTimerRunning = true
+                    //insertTimer(newTimerData)
+                    
                 } else {
                     isTimerRunning = !isTimerRunning
                 }
@@ -217,5 +224,17 @@ fun Timer(
             )
         }
     }
+    val newTimerData = TimerSessionData(done = false, categoty = "Учёба")
+    insertTimer(timerData = newTimerData)
 }
 
+@Composable
+fun insertTimer(timerData: TimerSessionData){
+    val viewModel: MainViewModel = viewModel()
+    val timerModel = TimerSessionEntity(
+        done = timerData.done,
+        categoty = timerData.categoty
+    )
+    viewModel.insert(timerModel)
+    Log.d("MeLog", "База дынных")
+}

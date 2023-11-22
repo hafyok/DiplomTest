@@ -3,6 +3,7 @@ package com.example.diplomtest.View.TimerScreen
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -23,16 +24,20 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.rememberNavController
+import com.example.diplomtest.MainViewModel
 import com.example.diplomtest.View.BottomNavigation
 
 @Preview
 @Composable
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
-fun TimerScreenContent(){
+fun TimerScreenContent(
+){
+    val viewModel: MainViewModel = viewModel()
     var textState by rememberSaveable { mutableStateOf("Hello, World!") }
     val navController = rememberNavController()
-
+    //val itemsList = mainViewModel.itemsList.collectAsState(initial = emptyList())
     Scaffold(
 
         content = {paddingValues ->
@@ -62,6 +67,9 @@ fun TimerScreenContent(){
                     modifier = Modifier.size(200.dp)
                 )
 
+                Spacer(modifier = Modifier.padding(10.dp))
+
+
             }
         },
 
@@ -77,9 +85,6 @@ fun TimerScreenContent(){
         },
 
         bottomBar = {
-            /*BottomAppBar {
-                BottomBar()
-            }*/
             BottomNavigation(navController = navController)
         }
     )
