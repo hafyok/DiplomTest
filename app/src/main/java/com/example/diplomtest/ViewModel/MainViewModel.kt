@@ -1,4 +1,4 @@
-package com.example.diplomtest
+package com.example.diplomtest.ViewModel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
