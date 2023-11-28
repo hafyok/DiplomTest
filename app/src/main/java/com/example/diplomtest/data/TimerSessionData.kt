@@ -7,4 +7,6 @@ data class TimerSessionData(
     //val duration: Long,
     val done: Boolean,
     val categoty: String
+
+
 )

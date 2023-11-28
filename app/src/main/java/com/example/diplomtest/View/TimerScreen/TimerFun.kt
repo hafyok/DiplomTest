@@ -224,7 +224,7 @@ fun Timer(
             )
         }
     }
-    val newTimerData = TimerSessionData(done = false, categoty = "Учёба")
+    val newTimerData = TimerSessionData(done = false, categoty = Category.currentCategory)
     insertTimer(timerData = newTimerData)
 }
 
