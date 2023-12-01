@@ -1,5 +1,6 @@
 package com.example.diplomtest.View.TimerScreen
 
+import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -32,6 +33,8 @@ fun TestTimerScreen(viewModel: CountDownTimerViewModel = viewModel()) {
                     onClick = {
                         /*val newValue = (userInputMinute - 5)
                         onValueChange(newValue)*/
+                        userInputMinute = userInputMinute - 5000
+                        Log.d("Timer", userInputMinute.toString())
                     }
                 ) {
                     Text("-")

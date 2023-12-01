@@ -11,12 +11,14 @@ import kotlinx.coroutines.launch
 import java.util.concurrent.TimeUnit
 
 class CountDownTimerViewModel : ViewModel() {
+    //var uiState by mutableStateOf(CountUiState())
 
     private var countDownTimer: CountDownTimer? = null
 
-    private val userInputHour = TimeUnit.HOURS.toMillis(1)
-    private val userInputMinute = TimeUnit.MINUTES.toMillis(10)
-    private val userInputSecond = TimeUnit.SECONDS.toMillis(30)
+    var userInputHour = TimeUnit.HOURS.toMillis(1)
+    var userInputMinute = TimeUnit.MINUTES.toMillis(10)
+    var userInputSecond = TimeUnit.SECONDS.toMillis(30)
+
 
     val initialTotalTimeInMillis = userInputHour + userInputMinute + userInputSecond
     var timeLeft = mutableStateOf(initialTotalTimeInMillis)
