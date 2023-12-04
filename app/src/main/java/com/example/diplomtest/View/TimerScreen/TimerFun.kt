@@ -34,7 +34,7 @@ import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.diplomtest.MainViewModel
+import com.example.diplomtest.ViewModel.MainViewModel
 import com.example.diplomtest.data.TimerSessionData
 import com.example.diplomtest.data.TimerSessionEntity
 //import androidx.lifecycle.viewmodel.compose.viewModel
@@ -197,13 +197,15 @@ fun Timer(
             fontWeight = FontWeight.Bold,
             color = Color.Black
         )
+
+
         Button(
             onClick = {
                 if(currentTime <= 0L) {
                     currentTime = totalTime
                     isTimerRunning = true
                     //insertTimer(newTimerData)
-                    
+
                 } else {
                     isTimerRunning = !isTimerRunning
                 }
@@ -223,9 +225,20 @@ fun Timer(
                 else "Restart"
             )
         }
+
+        Button(
+            onClick = {
+                      viewModel.deleteLastItem()
+            },
+            modifier = Modifier.align(Alignment.BottomCenter),
+        ) {
+            Text(
+                text = "Удалить запись"
+            )
+        }
     }
     val newTimerData = TimerSessionData(done = false, categoty = Category.currentCategory)
-    insertTimer(timerData = newTimerData)
+    insertTimer(timerData = newTimerData) // <-нужно поправить код (конфликт с composable-функциями)
 }
 
 @Composable

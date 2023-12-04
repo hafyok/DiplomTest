@@ -12,4 +12,11 @@ class TimerRepository(private val dao: Dao) {
     suspend fun delete(timer: TimerSessionEntity){
         dao.deleteItem(timer)
     }
+
+    suspend fun deleteLastItem() {
+        val lastItem = dao.getLastItem()
+        lastItem?.let {
+            dao.deleteItem(it)
+        }
+    }
 }

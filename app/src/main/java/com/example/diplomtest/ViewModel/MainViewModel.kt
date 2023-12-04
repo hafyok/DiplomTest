@@ -1,4 +1,4 @@
-package com.example.diplomtest
+package com.example.diplomtest.ViewModel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
@@ -28,5 +28,9 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     fun delete(timer: TimerSessionEntity) = viewModelScope.launch {
         repository.delete(timer)
+    }
+
+    fun deleteLastItem() = viewModelScope.launch {
+        repository.deleteLastItem()
     }
 }

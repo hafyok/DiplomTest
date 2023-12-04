@@ -15,6 +15,9 @@ interface Dao {
     @Delete
     suspend fun deleteItem(nameSession: TimerSessionEntity)
 
+    @Query("SELECT * FROM TimerSessionEntity ORDER BY id DESC LIMIT 1")
+    suspend fun getLastItem(): TimerSessionEntity?
+
     @Query("SELECT * FROM TimerSessionEntity")
     fun getAllItems(): kotlinx.coroutines.flow.Flow<List<TimerSessionEntity>>
 }
