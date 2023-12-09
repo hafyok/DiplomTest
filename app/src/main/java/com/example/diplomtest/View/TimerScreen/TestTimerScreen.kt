@@ -1,6 +1,5 @@
 package com.example.diplomtest.View.TimerScreen
 
-import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -10,7 +9,6 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -35,7 +33,7 @@ fun TestTimerScreen(viewModel: CountDownTimerViewModel = viewModel()) {
                     onClick = {
                         timeLeft -= 300000
                         timerText.value = timeLeft.timeFormat()
-                        Log.d("Timer", timeLeft.toString())
+                        //Log.d("Timer", timeLeft.toString())
                     }
                 ) {
                     Text("-")
@@ -49,8 +47,9 @@ fun TestTimerScreen(viewModel: CountDownTimerViewModel = viewModel()) {
                 Spacer(modifier = Modifier.width(8.dp))
                 Button(
                     onClick = {
-                        /*val newValue = (value + 5).coerceIn(range)
-                        onValueChange(newValue)*/
+                        timeLeft += 300000
+                        timerText.value = timeLeft.timeFormat()
+                        //Log.d("Timer", timeLeft.toString())
                     }
                 ) {
                     Text("+")
@@ -68,6 +67,6 @@ fun TestTimerScreen(viewModel: CountDownTimerViewModel = viewModel()) {
 
 @Preview
 @Composable
-fun previewTesttimerScreen(){
+fun PreviewTesttimerScreen(){
     TestTimerScreen()
 }

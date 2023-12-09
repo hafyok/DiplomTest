@@ -1,9 +1,7 @@
 package com.example.diplomtest.ViewModel
 
 import android.os.CountDownTimer
-import android.util.Log
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableLongStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
@@ -17,9 +15,9 @@ class CountDownTimerViewModel : ViewModel() {
 
     private var countDownTimer: CountDownTimer? = null
 
-    var userInputHour = TimeUnit.HOURS.toMillis(1)
-    var userInputMinute = TimeUnit.MINUTES.toMillis(10)
-    var userInputSecond = TimeUnit.SECONDS.toMillis(30)
+    var userInputHour = TimeUnit.HOURS.toMillis(0)
+    var userInputMinute = TimeUnit.MINUTES.toMillis(45)
+    var userInputSecond = TimeUnit.SECONDS.toMillis(0)
 
 
     var initialTotalTimeInMillis = userInputHour + userInputMinute + userInputSecond
