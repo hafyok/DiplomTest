@@ -10,12 +10,14 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.diplomtest.View.TimerScreen.TimeFormatExt.timeFormat
 import com.example.diplomtest.ViewModel.CountDownTimerViewModel
 
 @Composable
@@ -31,10 +33,9 @@ fun TestTimerScreen(viewModel: CountDownTimerViewModel = viewModel()) {
             Row {
                 Button(
                     onClick = {
-                        /*val newValue = (userInputMinute - 5)
-                        onValueChange(newValue)*/
-                        userInputMinute = userInputMinute - 5000
-                        Log.d("Timer", userInputMinute.toString())
+                        timeLeft -= 300000
+                        timerText.value = timeLeft.timeFormat()
+                        Log.d("Timer", timeLeft.toString())
                     }
                 ) {
                     Text("-")

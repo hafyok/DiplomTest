@@ -2,8 +2,10 @@ package com.example.diplomtest.ViewModel
 
 import android.os.CountDownTimer
 import android.util.Log
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableLongStateOf
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.diplomtest.View.TimerScreen.TimeFormatExt.timeFormat
@@ -20,20 +22,22 @@ class CountDownTimerViewModel : ViewModel() {
     var userInputSecond = TimeUnit.SECONDS.toMillis(30)
 
 
-    val initialTotalTimeInMillis = userInputHour + userInputMinute + userInputSecond
-    var timeLeft = mutableStateOf(initialTotalTimeInMillis)
+    var initialTotalTimeInMillis = userInputHour + userInputMinute + userInputSecond
+    //var initialTotalTimeInMillis by mutableStateOf(userInputHour + userInputMinute + userInputSecond)
+    //var timeLeft = mutableStateOf(initialTotalTimeInMillis)
+    var timeLeft by mutableStateOf(initialTotalTimeInMillis)
     val countDownInterval = 1000L // 1 seconds is the lowest
 
-    val timerText = mutableStateOf(timeLeft.value.timeFormat())
+    val timerText = mutableStateOf(timeLeft.timeFormat())
 
     val isPlaying = mutableStateOf(false)
 
     fun startCountDownTimer() = viewModelScope.launch {
         isPlaying.value = true
-        countDownTimer = object : CountDownTimer(timeLeft.value, countDownInterval) {
+        countDownTimer = object : CountDownTimer(timeLeft, countDownInterval) {
             override fun onTick(currentTimeLeft: Long) {
                 timerText.value = currentTimeLeft.timeFormat()
-                timeLeft.value = currentTimeLeft
+                timeLeft = currentTimeLeft
             }
 
             override fun onFinish() {
@@ -52,7 +56,7 @@ class CountDownTimerViewModel : ViewModel() {
         isPlaying.value = false
         countDownTimer?.cancel()
         timerText.value = initialTotalTimeInMillis.timeFormat()
-        timeLeft.value = initialTotalTimeInMillis
+        timeLeft = initialTotalTimeInMillis
     }
 }
 
