@@ -1,16 +1,15 @@
 package com.example.diplomtest.View.TimerScreen
 
-import android.os.CountDownTimer
 import android.util.Log
-import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
-import androidx.compose.material3.Slider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -20,99 +19,23 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.geometry.Size
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.PointMode
-import androidx.compose.ui.graphics.StrokeCap
-import androidx.compose.ui.graphics.drawscope.Stroke
-import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.diplomtest.ViewModel.MainViewModel
 import com.example.diplomtest.data.TimerSessionData
 import com.example.diplomtest.data.TimerSessionEntity
-//import androidx.lifecycle.viewmodel.compose.viewModel
 import kotlinx.coroutines.delay
 import java.lang.Math.PI
+import java.time.LocalTime
+import kotlin.math.absoluteValue
 import kotlin.math.cos
 import kotlin.math.sin
 
 
-//@Preview(showBackground = true)
-@Composable
-fun SliderMinimalExample() {
-    var timer: CountDownTimer? = null
-
-    var sliderPosition by remember { mutableStateOf(40f) }
-    var textTimer by remember { mutableStateOf(40) }
-
-    //var textState by rememberSaveable { mutableStateOf("Hello, World!") }
-    var timeRemaining by remember { mutableStateOf(40_000L) } // Начальное время в миллисекундах (в данном случае, 40 секунд)
-    var isTimerRunning by remember { mutableStateOf(false) }
-
-    fun startTimer() {
-        timer = object : CountDownTimer(timeRemaining, 1000) {
-            override fun onTick(millisUntilFinished: Long) {
-                timeRemaining = millisUntilFinished
-                textTimer = timeRemaining.toInt() / 1000
-
-                Log.d("MyLog", timeRemaining.toString())
-            }
-
-            override fun onFinish() {
-                isTimerRunning = false
-            }
-        }
-        timer?.start()
-    }
-
-    Column(
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        //Text(text = sliderPosition.toInt().toString())
-        //textTimer = sliderPosition.toInt()
-        //timeRemaining = sliderPosition.toInt() * 1000L
-        Text(text = textTimer.toString())
-        Spacer(modifier = Modifier.padding(10.dp))
-        Slider(
-            value = sliderPosition,
-            onValueChange = { sliderPosition = it },
-            steps = 21,
-            valueRange = 10f..120f,
-        )
-        //Text("Time Remaining: ${(textTimer)} seconds")
-
-        Button(
-            onClick = {
-                Log.d("MyLog", isTimerRunning.toString())
-                Log.d("MyLog", timeRemaining.toString())
-
-
-                if (isTimerRunning) {
-                    timer?.cancel()
-                    isTimerRunning = false
-                } else {
-                    startTimer()
-                    isTimerRunning = true
-                }
-            },
-            modifier = Modifier.padding(8.dp)
-        ) {
-            Text(if (isTimerRunning) "Stop Timer" else "Start Timer")
-        }
-
-    }
-
-}
-
-@Preview(showBackground = true, widthDp = 220,)
+/*@Preview(showBackground = true, widthDp = 220)
 @Composable
 fun PreviewTimer(){
     Timer(
@@ -122,8 +45,10 @@ fun PreviewTimer(){
         activeBarColor = Color(0xFF37B900),
         modifier = Modifier.size(200.dp)
     )
-}
+}*/
 
+
+/*
 @Composable
 fun Timer(
     totalTime: Long,
@@ -134,7 +59,6 @@ fun Timer(
     initialValue: Float = 1f,
     strokeWidth: Dp = 5.dp
 ) {
-    val viewModel: MainViewModel = viewModel()
     var size by remember {
         mutableStateOf(IntSize.Zero)
     }
@@ -211,13 +135,16 @@ fun Timer(
                 }
             },
             modifier = Modifier.align(Alignment.BottomCenter),
-            /*colors = ButtonDefaults.buttonColors(
+            */
+/*colors = ButtonDefaults.buttonColors(
                 backgroundColor = if (!isTimerRunning || currentTime <= 0L) {
                     Color.Green
                 } else {
                     Color.Red
                 }
-            )*/
+            )*//*
+
+
         ) {
             Text(
                 text = if (isTimerRunning && currentTime >= 0L) "Stop"
@@ -240,7 +167,134 @@ fun Timer(
     val newTimerData = TimerSessionData(done = false, categoty = Category.currentCategory)
     insertTimer(timerData = newTimerData) // <-нужно поправить код (конфликт с composable-функциями)
 }
+*/
+@Preview(showBackground = true, widthDp = 220)
+@Composable
+fun PreviewTimer(){
+    var timerValue by remember { mutableStateOf(10) }
+    Timer(
+        value = timerValue,
+        onValueChange = { newValue ->
+            timerValue = newValue
+        },
+        range = 1..100,
+        label = "Timer Value"
+    )
+}
 
+@Composable
+fun Timer(
+    value: Int,
+    onValueChange: (Int) -> Unit,
+    range: IntRange,
+    label: String
+) {
+    Column(
+        modifier = Modifier.padding(8.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Text(text = label)
+        Spacer(modifier = Modifier.height(4.dp))
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.Center
+        ) {
+            Button(
+                onClick = {
+                    val newValue = (value - 5).coerceIn(range)
+                    onValueChange(newValue)
+                }
+            ) {
+                Text("-")
+            }
+            Spacer(modifier = Modifier.width(8.dp))
+            Text(text = value.toString())
+            Spacer(modifier = Modifier.width(8.dp))
+            Button(
+                onClick = {
+                    val newValue = (value + 5).coerceIn(range)
+                    onValueChange(newValue)
+                }
+            ) {
+                Text("+")
+            }
+        }
+    }
+}
+
+@Composable
+fun TimerScreen() {
+    var selectedTime by remember { mutableStateOf(10) }
+    var isTimerRunning by remember { mutableStateOf(false) }
+    val timer = remember {
+        CountDownTimerFun(60000, 1000) // Таймер на 60 секунд с интервалом 1 секунда
+    }
+    var timeRemaining by remember { mutableStateOf(timer.timerRemaining * 1000L) }
+
+    LaunchedEffect(timer.timerRemaining) {
+        timeRemaining = timer.timerRemaining * 1000L
+    }
+
+    Column(
+        modifier = Modifier.padding(8.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Timer(
+            value = selectedTime,
+            onValueChange = { newValue ->
+                if (!isTimerRunning) {
+                    selectedTime = newValue
+                    timeRemaining = selectedTime * 1000L
+                }
+            },
+            range = 1..100,
+            label = "Select Time"
+        )
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.Center
+        ) {
+            Button(
+                onClick = {
+                    if (!isTimerRunning) {
+                        isTimerRunning = true
+                        timer.start()
+                    }
+                },
+                modifier = Modifier.padding(8.dp)
+            ) {
+                Text("Start Timer")
+            }
+
+            Button(
+                onClick = {
+                    isTimerRunning = false
+                    //timer.cancel()
+                    Log.d("MyLog", timer.timerRemaining.toString())
+                },
+                modifier = Modifier.padding(8.dp)
+            ) {
+                Text("Stop Timer")
+            }
+        }
+
+        Text(
+            text = "Time Remaining: ${(timeRemaining / 1000L)} seconds",
+            fontSize = 20.sp,
+            fontWeight = FontWeight.Bold,
+            modifier = Modifier.padding(16.dp)
+        )
+    }
+}
+
+@Composable
+@Preview
+fun previewTimerScreen(){
+    TimerScreen()
+}
 @Composable
 fun insertTimer(timerData: TimerSessionData){
     val viewModel: MainViewModel = viewModel()

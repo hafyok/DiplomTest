@@ -17,6 +17,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -58,14 +59,17 @@ fun TimerScreenContent(
                 ) {
                     Text("Click me")
                 }
-                //SliderMinimalExample()
+                /*var timerValue by remember { mutableStateOf(10) }
                 Timer(
-                    totalTime = 150L * 1000L,
-                    handleColor = Color.Green,
-                    inactiveBarColor = Color.DarkGray,
-                    activeBarColor = Color(0xFF37B900),
-                    modifier = Modifier.size(200.dp)
-                )
+                    value = timerValue,
+                    onValueChange = { newValue ->
+                        timerValue = newValue
+                    },
+                    range = 1..100,
+                    label = "Timer Value"
+                )*/
+                //TimerScreen()
+                TestTimerScreen()
 
                 Spacer(modifier = Modifier.padding(10.dp))
                 CategoryFun()
