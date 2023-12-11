@@ -5,6 +5,8 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
@@ -19,21 +21,22 @@ import com.example.diplomtest.View.TimerScreen.TimeFormatExt.timeFormat
 import com.example.diplomtest.ViewModel.CountDownTimerViewModel
 
 @Composable
-fun TestTimerScreen(viewModel: CountDownTimerViewModel = viewModel()) {
+fun TestTimer(viewModel: CountDownTimerViewModel = viewModel()) {
     Column(
-        modifier = Modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.Center,
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp), // добавляем отступы для красоты
+        verticalArrangement = Arrangement.Bottom, // выравниваем по нижнему краю
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         viewModel.apply {
-
+            CategoryFun()
             Text(text = timerText.value, fontSize = 28.sp)
             Row {
                 Button(
                     onClick = {
-                        timeLeft -= 300000
+                        timeLeft -= 300000 //-5 минут
                         timerText.value = timeLeft.timeFormat()
-                        //Log.d("Timer", timeLeft.toString())
                     }
                 ) {
                     Text("-")
@@ -47,9 +50,8 @@ fun TestTimerScreen(viewModel: CountDownTimerViewModel = viewModel()) {
                 Spacer(modifier = Modifier.width(8.dp))
                 Button(
                     onClick = {
-                        timeLeft += 300000
+                        timeLeft += 300000 //+5 минут
                         timerText.value = timeLeft.timeFormat()
-                        //Log.d("Timer", timeLeft.toString())
                     }
                 ) {
                     Text("+")
@@ -61,12 +63,13 @@ fun TestTimerScreen(viewModel: CountDownTimerViewModel = viewModel()) {
             }) {
                 Text(text = "Reset Timer")
             }
+
         }
     }
 }
 
 @Preview
 @Composable
-fun PreviewTesttimerScreen(){
-    TestTimerScreen()
+fun PreviewTestTimer(){
+    TestTimer()
 }

@@ -3,6 +3,7 @@ package com.example.diplomtest.View.TimerScreen
 import android.util.Log
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
@@ -32,12 +33,13 @@ fun CategoryFun() {
                         Log.d("TestCategory", Category.currentCategory)
                     },
                 elevation = 8.dp,
-                shape = RoundedCornerShape(16.dp),
+                shape = RoundedCornerShape(20.dp),
                 backgroundColor = Color.Gray // Замените этот цвет на желаемый фон кнопки
             ) {
                 Column(
                     modifier = Modifier
                         .padding(16.dp)
+                        //.height(20.dp)
                 ) {
                     Text(
                         text = category,
