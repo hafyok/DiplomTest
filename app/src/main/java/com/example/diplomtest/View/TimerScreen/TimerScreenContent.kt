@@ -25,7 +25,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.rememberNavController
 import com.example.diplomtest.ViewModel.MainViewModel
-import com.example.diplomtest.View.BottomNavigation
+import com.example.diplomtest.View.Navigation.BottomNavigation
 
 @Preview
 @Composable

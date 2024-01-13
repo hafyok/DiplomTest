@@ -1,4 +1,4 @@
-package com.example.diplomtest.View
+package com.example.diplomtest.View.Navigation
 
 import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.Icon
@@ -21,6 +21,7 @@ fun BottomNavigation(
     val listItems = listOf(
         BottomItem.Screen1,
         BottomItem.Screen2,
+        BottomItem.Screen3
     )
     androidx.compose.material.BottomNavigation(
         backgroundColor = Color.White

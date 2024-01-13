@@ -5,6 +5,8 @@ import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.rememberNavController
+import com.example.diplomtest.View.Navigation.BottomNavigation
+import com.example.diplomtest.View.Navigation.NavGraph
 
 
 @Preview
