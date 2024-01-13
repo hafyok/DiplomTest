@@ -30,8 +30,7 @@ import com.example.diplomtest.View.Navigation.BottomNavigation
 @Preview
 @Composable
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
-fun TimerScreenContent(
-){
+fun TimerScreenContent(){
     val viewModel: MainViewModel = viewModel()
     var textState by rememberSaveable { mutableStateOf("Hello, World!") }
     val navController = rememberNavController()
