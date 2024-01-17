@@ -20,20 +20,19 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.navigation.compose.rememberNavController
+import androidx.navigation.NavController
 import com.example.diplomtest.ViewModel.MainViewModel
 import com.example.diplomtest.View.Navigation.BottomNavigation
 
-@Preview
+//@Preview
 @Composable
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
-fun TimerScreenContent(){
+fun TimerScreenContent(navController: NavController){
     val viewModel: MainViewModel = viewModel()
     var textState by rememberSaveable { mutableStateOf("Hello, World!") }
-    val navController = rememberNavController()
+    //val navController = rememberNavController()
     //val itemsList = mainViewModel.itemsList.collectAsState(initial = emptyList())
     Scaffold(
 

@@ -16,18 +16,17 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.compose.rememberNavController
+import androidx.navigation.NavController
 import com.example.diplomtest.View.Navigation.BottomNavigation
 
 
 @OptIn(ExperimentalMaterial3Api::class)
-@Preview
+//@Preview
 @Composable
-fun NotesScreen() {
-    val navController = rememberNavController()
+fun NotesScreen(navController: NavController) {
+    //val navController = rememberNavController()
     val notes = listOf(
         "1", "2", "3"
     )
@@ -66,6 +65,7 @@ fun NotesScreen() {
             Column {
                 FloatingActionButton(
                     onClick = {
+                              navController.navigate("new_note_screen")
                         // Обработка нажатия на кнопку
                         // (Вы можете добавить здесь код для открытия экрана создания новой заметки)
                     },
