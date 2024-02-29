@@ -1,12 +1,12 @@
-package com.example.diplomtest.View
+package com.example.diplomtest.presentation
 
 import android.annotation.SuppressLint
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.rememberNavController
-import com.example.diplomtest.View.Navigation.BottomNavigation
-import com.example.diplomtest.View.Navigation.NavGraph
+import com.example.diplomtest.presentation.Navigation.BottomNavigation
+import com.example.diplomtest.presentation.Navigation.NavGraph
 
 
 @Preview

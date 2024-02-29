@@ -1,4 +1,4 @@
-package com.example.diplomtest.View.StatsScreen
+package com.example.diplomtest.presentation.StatsScreen
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box

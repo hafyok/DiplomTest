@@ -1,13 +1,13 @@
-package com.example.diplomtest.View.Navigation
+package com.example.diplomtest.presentation.Navigation
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.example.diplomtest.View.NotesScreen.NewNote
-import com.example.diplomtest.View.NotesScreen.NotesScreen
-import com.example.diplomtest.View.StatsScreen.StatsContent
-import com.example.diplomtest.View.TimerScreen.TimerScreenContent
+import com.example.diplomtest.presentation.NotesScreen.NewNote
+import com.example.diplomtest.presentation.NotesScreen.NotesScreen
+import com.example.diplomtest.presentation.StatsScreen.StatsContent
+import com.example.diplomtest.presentation.TimerScreen.TimerScreenContent
 
 
 @Composable

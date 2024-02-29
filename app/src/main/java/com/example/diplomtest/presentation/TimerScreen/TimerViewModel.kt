@@ -1,14 +1,14 @@
-package com.example.diplomtest.ViewModel
+package com.example.diplomtest.presentation.TimerScreen
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.diplomtest.data.AppDatabase
+import com.example.diplomtest.data.database.AppDatabase
 import com.example.diplomtest.data.TimerRepository
 import com.example.diplomtest.data.TimerSessionEntity
 import kotlinx.coroutines.launch
 
-class MainViewModel(application: Application) : AndroidViewModel(application) {
+class TimerViewModel(application: Application) : AndroidViewModel(application) {
     private val repository: TimerRepository
     val allTasks: kotlinx.coroutines.flow.Flow<List<TimerSessionEntity>>
 

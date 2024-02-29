@@ -1,4 +1,4 @@
-package com.example.diplomtest.View.TimerScreen
+package com.example.diplomtest.presentation.TimerScreen
 
 import java.util.concurrent.TimeUnit
 

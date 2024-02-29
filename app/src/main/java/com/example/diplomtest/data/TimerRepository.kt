@@ -2,21 +2,21 @@ package com.example.diplomtest.data
 
 import kotlinx.coroutines.flow.Flow
 
-class TimerRepository(private val dao: Dao) {
-    val allTasks: Flow<List<TimerSessionEntity>> = dao.getAllItems()
+class TimerRepository(private val timerSessionDao: TimerSessionDao) {
+    val allTasks: Flow<List<TimerSessionEntity>> = timerSessionDao.getAllItems()
 
     suspend fun insert(timer: TimerSessionEntity){
-        dao.insertItem(timer)
+        timerSessionDao.insertItem(timer)
     }
 
     suspend fun delete(timer: TimerSessionEntity){
-        dao.deleteItem(timer)
+        timerSessionDao.deleteItem(timer)
     }
 
     suspend fun deleteLastItem() {
-        val lastItem = dao.getLastItem()
+        val lastItem = timerSessionDao.getLastItem()
         lastItem?.let {
-            dao.deleteItem(it)
+            timerSessionDao.deleteItem(it)
         }
     }
 }

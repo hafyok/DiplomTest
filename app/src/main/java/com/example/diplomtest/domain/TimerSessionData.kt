@@ -1,4 +1,4 @@
-package com.example.diplomtest.data
+package com.example.diplomtest.domain
 
 data class TimerSessionData(
     val id: Int? = null,

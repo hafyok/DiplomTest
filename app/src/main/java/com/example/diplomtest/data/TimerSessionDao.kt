@@ -8,7 +8,7 @@ import androidx.room.Query
 
 
 @Dao
-interface Dao {
+interface TimerSessionDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertItem(nameSession: TimerSessionEntity)
 

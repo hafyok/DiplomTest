@@ -1,9 +1,11 @@
-package com.example.diplomtest.data
+package com.example.diplomtest.data.database
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.example.diplomtest.data.TimerSessionDao
+import com.example.diplomtest.data.TimerSessionEntity
 
 /*
 @Database(
@@ -13,7 +15,7 @@ import androidx.room.RoomDatabase
     version = 1
 )
 abstract class MainDB : RoomDatabase() {
-    abstract val dao: Dao
+    abstract val dao: TimerSessionDao
     companion object{
         fun createDataBase(context: Context): MainDB{
             return Room.databaseBuilder(
@@ -26,7 +28,7 @@ abstract class MainDB : RoomDatabase() {
 }*/
 @Database(entities = [TimerSessionEntity::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
-    abstract fun dao(): Dao
+    abstract fun dao(): TimerSessionDao
 
     companion object {
         @Volatile

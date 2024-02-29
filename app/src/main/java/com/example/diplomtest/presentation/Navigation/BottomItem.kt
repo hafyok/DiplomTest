@@ -1,4 +1,4 @@
-package com.example.diplomtest.View.Navigation
+package com.example.diplomtest.presentation.Navigation
 
 import com.example.diplomtest.R
 

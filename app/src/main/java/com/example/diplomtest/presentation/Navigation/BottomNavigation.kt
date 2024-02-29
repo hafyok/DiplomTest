@@ -1,4 +1,4 @@
-package com.example.diplomtest.View.Navigation
+package com.example.diplomtest.presentation.Navigation
 
 import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.Icon

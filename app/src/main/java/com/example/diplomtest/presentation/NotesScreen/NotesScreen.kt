@@ -1,4 +1,4 @@
-package com.example.diplomtest.View.NotesScreen
+package com.example.diplomtest.presentation.NotesScreen
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -19,7 +19,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import com.example.diplomtest.View.Navigation.BottomNavigation
+import com.example.diplomtest.presentation.Navigation.BottomNavigation
 
 
 @OptIn(ExperimentalMaterial3Api::class)

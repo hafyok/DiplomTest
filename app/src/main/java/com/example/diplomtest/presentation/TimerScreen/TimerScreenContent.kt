@@ -1,4 +1,4 @@
-package com.example.diplomtest.View.TimerScreen
+package com.example.diplomtest.presentation.TimerScreen
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Arrangement
@@ -23,14 +23,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
-import com.example.diplomtest.ViewModel.MainViewModel
-import com.example.diplomtest.View.Navigation.BottomNavigation
+import com.example.diplomtest.presentation.Navigation.BottomNavigation
 
 //@Preview
 @Composable
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 fun TimerScreenContent(navController: NavController){
-    val viewModel: MainViewModel = viewModel()
+    val viewModel: TimerViewModel = viewModel()
     var textState by rememberSaveable { mutableStateOf("Hello, World!") }
     //val navController = rememberNavController()
     //val itemsList = mainViewModel.itemsList.collectAsState(initial = emptyList())

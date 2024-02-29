@@ -1,4 +1,4 @@
-package com.example.diplomtest.View.TimerScreen
+package com.example.diplomtest.presentation.TimerScreen
 
 import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
@@ -24,15 +24,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.diplomtest.ViewModel.MainViewModel
-import com.example.diplomtest.data.TimerSessionData
+import com.example.diplomtest.domain.TimerSessionData
 import com.example.diplomtest.data.TimerSessionEntity
-import kotlinx.coroutines.delay
-import java.lang.Math.PI
-import java.time.LocalTime
-import kotlin.math.absoluteValue
-import kotlin.math.cos
-import kotlin.math.sin
 
 
 /*@Preview(showBackground = true, widthDp = 220)
@@ -297,7 +290,7 @@ fun previewTimerScreen(){
 }
 @Composable
 fun insertTimer(timerData: TimerSessionData){
-    val viewModel: MainViewModel = viewModel()
+    val viewModel: TimerViewModel = viewModel()
     val timerModel = TimerSessionEntity(
         done = timerData.done,
         categoty = timerData.categoty

@@ -1,4 +1,4 @@
-package com.example.diplomtest.View.TimerScreen
+package com.example.diplomtest.presentation.TimerScreen
 
 object Category {
     var categoryList = listOf("Учеба", "Работа", "Отдых")
