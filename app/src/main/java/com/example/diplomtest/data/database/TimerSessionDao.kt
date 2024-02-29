@@ -1,4 +1,4 @@
-package com.example.diplomtest.data
+package com.example.diplomtest.data.database
 
 import androidx.room.Dao
 import androidx.room.Delete

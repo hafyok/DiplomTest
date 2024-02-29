@@ -4,17 +4,17 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.diplomtest.data.database.AppDatabase
-import com.example.diplomtest.data.TimerRepository
-import com.example.diplomtest.data.TimerSessionEntity
+import com.example.diplomtest.data.repository.TimerRepositoryImpl
+import com.example.diplomtest.data.database.TimerSessionEntity
 import kotlinx.coroutines.launch
 
 class TimerViewModel(application: Application) : AndroidViewModel(application) {
-    private val repository: TimerRepository
+    private val repository: TimerRepositoryImpl
     val allTasks: kotlinx.coroutines.flow.Flow<List<TimerSessionEntity>>
 
     init {
         val taskDao = AppDatabase.getDatabase(application).dao()
-        repository = TimerRepository(taskDao)
+        repository = TimerRepositoryImpl(taskDao)
         allTasks = repository.allTasks
     }
 

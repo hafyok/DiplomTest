@@ -1,4 +1,4 @@
-package com.example.diplomtest.data
+package com.example.diplomtest.data.database
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -17,11 +17,13 @@ data class TimerSessionEntity(
 
 )
 
+//А это вообще нужно?
 @TypeConverter
 fun fromDate(date: Date?): Long? {
     return date?.time
 }
 
+//А это вообще нужно?
 @TypeConverter
 fun toDate(timestamp: Long?): Date? {
     return timestamp?.let { Date(it) }

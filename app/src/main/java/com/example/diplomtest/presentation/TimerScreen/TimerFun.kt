@@ -25,7 +25,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.diplomtest.domain.TimerSessionData
-import com.example.diplomtest.data.TimerSessionEntity
+import com.example.diplomtest.data.database.TimerSessionEntity
 
 
 /*@Preview(showBackground = true, widthDp = 220)
@@ -285,11 +285,11 @@ fun TimerScreen() {
 
 @Composable
 @Preview
-fun previewTimerScreen(){
+fun PreviewTimerScreen(){
     TimerScreen()
 }
 @Composable
-fun insertTimer(timerData: TimerSessionData){
+fun InsertTimer(timerData: TimerSessionData){
     val viewModel: TimerViewModel = viewModel()
     val timerModel = TimerSessionEntity(
         done = timerData.done,
