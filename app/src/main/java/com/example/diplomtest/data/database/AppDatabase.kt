@@ -5,43 +5,40 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-/*
-@Database(
-    entities = [
-        TimerSessionEntity::class
-    ],
-    version = 1
-)
-abstract class MainDB : RoomDatabase() {
-    abstract val dao: TimerSessionDao
-    companion object{
-        fun createDataBase(context: Context): MainDB{
-            return Room.databaseBuilder(
-                context,
-                MainDB::class.java,
-                "test.db"
-            ).build()
-        }
-    }
-}*/
 @Database(entities = [TimerSessionEntity::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
-    abstract fun dao(): TimerSessionDao
-
     companion object {
-        @Volatile
-        private var INSTANCE: AppDatabase? = null
+        private var db: AppDatabase? = null
+        private const val DB_NAME = "app_database"
+        private val LOCK = Any()
+
+        //@Volatile
+        //private var INSTANCE: AppDatabase? = null
 
         fun getDatabase(context: Context): AppDatabase {
-            return INSTANCE ?: synchronized(this) {
-                val instance = Room.databaseBuilder(
+            synchronized(LOCK) {
+                /*val instance = Room.databaseBuilder(
                     context.applicationContext,
                     AppDatabase::class.java,
                     "app_database"
                 ).build()
                 INSTANCE = instance
-                instance
+                instance*/
+                db?.let { return it }
+                val instance =
+                    Room.databaseBuilder(
+                        context,
+                        AppDatabase::class.java,
+                        DB_NAME
+                    )
+                        .fallbackToDestructiveMigration()
+                        .build()
+                db = instance
+                return instance
             }
         }
     }
+
+    abstract fun timerSessionDao(): TimerSessionDao
+
 }

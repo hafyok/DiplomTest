@@ -11,9 +11,10 @@ import kotlinx.coroutines.launch
 class TimerViewModel(application: Application) : AndroidViewModel(application) {
     private val repository: TimerRepositoryImpl
     val allTasks: kotlinx.coroutines.flow.Flow<List<TimerSessionEntity>>
+    //TODO() - добавить юз-кейсы
 
     init {
-        val taskDao = AppDatabase.getDatabase(application).dao()
+        val taskDao = AppDatabase.getDatabase(application).timerSessionDao()
         repository = TimerRepositoryImpl(taskDao)
         allTasks = repository.allTasks
     }
