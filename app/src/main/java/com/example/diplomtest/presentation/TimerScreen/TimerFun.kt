@@ -23,9 +23,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.diplomtest.domain.TimerSessionData
-import com.example.diplomtest.data.database.TimerSessionEntity
 
 
 /*@Preview(showBackground = true, widthDp = 220)
@@ -287,14 +284,4 @@ fun TimerScreen() {
 @Preview
 fun PreviewTimerScreen(){
     TimerScreen()
-}
-@Composable
-fun InsertTimer(timerData: TimerSessionData){
-    val viewModel: TimerViewModel = viewModel()
-    /*val timerModel = TimerSessionEntity(
-        done = timerData.done,
-        categoty = timerData.categoty
-    )*/
-    viewModel.insertTimer(timerData)
-    Log.d("MeLog", "База дынных")
 }

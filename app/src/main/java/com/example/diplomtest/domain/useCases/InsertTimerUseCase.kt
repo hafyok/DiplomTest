@@ -4,7 +4,7 @@ import com.example.diplomtest.domain.TimerRepository
 import com.example.diplomtest.domain.TimerSessionData
 
 class InsertTimerUseCase(
-    private val repository: TimerRepository,
+    private val repository: TimerRepository
 ) {
-    operator fun invoke(timer: TimerSessionData) = repository.insertTimer(timer)
+    suspend operator fun invoke(timer: TimerSessionData) = repository.insertTimer(timer)
 }

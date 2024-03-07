@@ -31,7 +31,7 @@ class TimerRepositoryImpl(
         }
     }*/
 
-    override fun insertTimer(timer: TimerSessionData) {
+    override suspend fun insertTimer(timer: TimerSessionData) {
         timerSessionDao.insertItem(mapper.mapModelToEntity(timer))
     }
 

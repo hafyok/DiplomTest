@@ -22,8 +22,7 @@ class TimerViewModel(application: Application) : AndroidViewModel(application) {
         repository.insertTimer(timer)
     }*/
 
-    fun insertTimer(timer: TimerSessionData) = insertTimerUseCase(timer)
-
+    suspend fun insertTimer(timer: TimerSessionData) = insertTimerUseCase(timer)
     /*fun update(task: TimerSessionEntity) = viewModelScope.launch {
         repository.update(task)
     }*/
