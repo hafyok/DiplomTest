@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 
 interface TimerRepository {
 
-    suspend fun insertTimer(timer: TimerSessionData)
+    fun insertTimer(timer: TimerSessionData)
 
     suspend fun deleteTimer(timer: TimerSessionData)
 

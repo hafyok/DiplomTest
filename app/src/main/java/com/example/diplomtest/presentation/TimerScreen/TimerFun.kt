@@ -291,10 +291,10 @@ fun PreviewTimerScreen(){
 @Composable
 fun InsertTimer(timerData: TimerSessionData){
     val viewModel: TimerViewModel = viewModel()
-    val timerModel = TimerSessionEntity(
+    /*val timerModel = TimerSessionEntity(
         done = timerData.done,
         categoty = timerData.categoty
-    )
-    viewModel.insert(timerModel)
+    )*/
+    viewModel.insertTimer(timerData)
     Log.d("MeLog", "База дынных")
 }

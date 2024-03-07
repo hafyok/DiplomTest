@@ -2,36 +2,37 @@ package com.example.diplomtest.presentation.TimerScreen
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.viewModelScope
-import com.example.diplomtest.data.database.AppDatabase
 import com.example.diplomtest.data.repository.TimerRepositoryImpl
-import com.example.diplomtest.data.database.TimerSessionEntity
-import kotlinx.coroutines.launch
+import com.example.diplomtest.domain.TimerSessionData
+import com.example.diplomtest.domain.useCases.InsertTimerUseCase
 
 class TimerViewModel(application: Application) : AndroidViewModel(application) {
-    private val repository: TimerRepositoryImpl
-    val allTasks: kotlinx.coroutines.flow.Flow<List<TimerSessionEntity>>
-    //TODO() - добавить юз-кейсы
+    private val repository =  TimerRepositoryImpl(application)
 
-    init {
+    //TODO() - добавить юз-кейсы
+    private val insertTimerUseCase = InsertTimerUseCase(repository)
+
+    /*init {
         val taskDao = AppDatabase.getDatabase(application).timerSessionDao()
         repository = TimerRepositoryImpl(taskDao)
         allTasks = repository.allTasks
-    }
+    }*/
 
-    fun insert(timer: TimerSessionEntity) = viewModelScope.launch {
-        repository.insert(timer)
-    }
+    /*fun insertTimer(timer: TimerSessionData) = viewModelScope.launch {
+        repository.insertTimer(timer)
+    }*/
+
+    fun insertTimer(timer: TimerSessionData) = insertTimerUseCase(timer)
 
     /*fun update(task: TimerSessionEntity) = viewModelScope.launch {
         repository.update(task)
     }*/
 
-    fun delete(timer: TimerSessionEntity) = viewModelScope.launch {
+    /*fun delete(timer: TimerSessionEntity) = viewModelScope.launch {
         repository.delete(timer)
     }
 
     fun deleteLastItem() = viewModelScope.launch {
         repository.deleteLastItem()
-    }
+    }*/
 }

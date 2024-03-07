@@ -1,24 +1,28 @@
 package com.example.diplomtest.data.repository
 
+import android.app.Application
 import androidx.lifecycle.LiveData
-import com.example.diplomtest.data.database.TimerSessionDao
-import com.example.diplomtest.data.database.TimerSessionEntity
+import com.example.diplomtest.data.database.AppDatabase
 import com.example.diplomtest.data.mapper.TimerMapper
 import com.example.diplomtest.domain.TimerRepository
 import com.example.diplomtest.domain.TimerSessionData
-import kotlinx.coroutines.flow.Flow
 
-class TimerRepositoryImpl(private val timerSessionDao: TimerSessionDao) : TimerRepository {
-    val allTasks: Flow<List<TimerSessionEntity>> = timerSessionDao.getAllItems()
+class TimerRepositoryImpl(
+    //private val timerSessionDao: TimerSessionDao
+    private val application: Application
+) : TimerRepository {
+
+    private val timerSessionDao = AppDatabase.getDatabase(application).timerSessionDao()
+
     private val mapper = TimerMapper()
 
-    suspend fun insert(timer: TimerSessionEntity){
+    /*suspend fun insertTimer(timer: TimerSessionEntity) {
         timerSessionDao.insertItem(timer)
     }
 
-    suspend fun delete(timer: TimerSessionEntity){
+    suspend fun delete(timer: TimerSessionEntity) {
         timerSessionDao.deleteItem(timer)
-    }
+    }*/
 
     /*suspend fun deleteLastItem() {
         val lastItem = timerSessionDao.getLastItem()
@@ -27,7 +31,7 @@ class TimerRepositoryImpl(private val timerSessionDao: TimerSessionDao) : TimerR
         }
     }*/
 
-    override suspend fun insertTimer(timer: TimerSessionData) {
+    override fun insertTimer(timer: TimerSessionData) {
         timerSessionDao.insertItem(mapper.mapModelToEntity(timer))
     }
 
