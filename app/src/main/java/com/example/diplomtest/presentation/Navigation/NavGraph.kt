@@ -6,7 +6,6 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.diplomtest.presentation.NotesScreen.CreateNoteScreen
 import com.example.diplomtest.presentation.NotesScreen.NotesList
-import com.example.diplomtest.presentation.NotesScreen.NotesScreen
 import com.example.diplomtest.presentation.StatsScreen.StatsContent
 import com.example.diplomtest.presentation.TimerScreen.TimerScreenContent
 
@@ -22,10 +21,7 @@ fun NavGraph(
         composable("stats_screen") {
             StatsContent(navHostController)
         }
-        composable("notes_screen") {
-            NotesScreen(navHostController)
-        }
-        composable("new_note_screen") {
+        composable("notesCreated") {
             CreateNoteScreen(navHostController)
         }
         composable("list_notes"){

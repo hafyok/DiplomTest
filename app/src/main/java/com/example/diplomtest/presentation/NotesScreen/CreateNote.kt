@@ -135,10 +135,3 @@ fun CreateNoteScreen(
     }
 }
 
-/*
-@Composable
-@Preview
-fun PreviewCreateNoteScreen() {
-    val navHostController = rememberNavController()
-    CreateNoteScreen(navController = navHostController)
-}*/

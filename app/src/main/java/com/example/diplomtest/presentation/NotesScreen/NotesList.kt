@@ -87,6 +87,9 @@ fun NotesList(navController: NavController) {
                         action = { navController.navigate(Constants.NAVIGATION_NOTES_CREATE) },
                         icon = R.drawable.baseline_notes_24 //TODO() исправить (note_add_icon)
                     )
+                },
+                bottomBar = {
+                    com.example.diplomtest.presentation.Navigation.BottomNavigation(navController = navController)
                 }
 
             ) {
