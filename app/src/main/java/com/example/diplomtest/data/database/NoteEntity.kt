@@ -6,6 +6,8 @@ import androidx.room.Index
 import androidx.room.PrimaryKey
 import com.example.diplomtest.Constants
 import com.example.diplomtest.domain.getDateCreated
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 @Entity(tableName = Constants.TABLE_NAME, indices = [Index(value = ["id"], unique = true)])
 data class NoteEntity (
@@ -15,3 +17,10 @@ data class NoteEntity (
     @ColumnInfo(name = "dateUpdated")   val dateUpdated: String = getDateCreated(),
     @ColumnInfo(name = "imageUri")     val imageUri: String? = null
 )
+
+fun NoteEntity.getDay(): String {
+    if (this.dateUpdated.isEmpty()) return ""
+    val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
+    return LocalDateTime.parse(this.dateUpdated, formatter).toLocalDate()
+        .format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
+}

@@ -1,5 +1,7 @@
 package com.example.diplomtest
 
+import com.example.diplomtest.data.database.NoteEntity
+
 object Constants {
     const val NAVIGATION_NOTES_LIST = "notesList"
     const val NAVIGATION_NOTES_CREATE = "notesCreated"
@@ -8,4 +10,15 @@ object Constants {
     const val NAVIGATION_NOTE_ID_Argument = "noteId"
     const val TABLE_NAME = "Notes"
     const val DATABASE_NAME = "NotesDatabase"
+
+    fun List<NoteEntity>?.orPlaceHolderList(): List<NoteEntity> {
+        fun placeHolderList(): List<NoteEntity> {
+            return listOf(NoteEntity(id = 0, title = "No Notes Found", note = "Please create a note.", dateUpdated = ""))
+        }
+        return if (this != null && this.isNotEmpty()){
+            this
+        } else placeHolderList()
+    }
+
+    val noteDetailPlaceHolder = NoteEntity(note = "Cannot find note details", id = 0, title = "Cannot find note details")
 }
