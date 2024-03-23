@@ -6,22 +6,21 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
-import com.example.diplomtest.domain.NoteData
 
 @Dao
 interface NotesDao {
     @Query("SELECT * FROM Notes WHERE notes.id=:id")
-    suspend fun getNoteById(id: Int) : NoteData?
+    suspend fun getNoteById(id: Int) : NoteEntity?
 
     @Query("SELECT * FROM Notes ORDER BY dateUpdated DESC")
-    fun getNotes() : LiveData<List<NoteData>>
+    fun getNotes() : LiveData<List<NoteEntity>>
 
     @Delete
-    fun deleteNote(note: NoteData) : Int
+    fun deleteNote(note: NoteEntity) : Int
 
     @Update
-    fun updateNote(note: NoteData) : Int
+    fun updateNote(note: NoteEntity) : Int
 
     @Insert
-    fun insertNote(note: NoteData)
+    fun insertNote(note: NoteEntity)
 }

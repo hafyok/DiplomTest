@@ -40,5 +40,6 @@ abstract class AppDatabase : RoomDatabase() {
     }
 
     abstract fun timerSessionDao(): TimerSessionDao
+    abstract fun notesDao(): NotesDao
 
 }
