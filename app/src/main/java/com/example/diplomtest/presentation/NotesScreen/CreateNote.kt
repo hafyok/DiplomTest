@@ -17,19 +17,15 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.example.diplomtest.R
-import com.example.diplomtest.ui.theme.DiplomTestTheme
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
+import com.example.diplomtest.ui.theme.DiplomTestTheme
 
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
@@ -62,7 +58,7 @@ fun CreateNoteScreen(
             modifier = Modifier.fillMaxSize(),
             color = androidx.compose.material.MaterialTheme.colors.primary
         ) {
-            androidx.compose.material.Scaffold(topBar = {
+            androidx.compose.material.Scaffold(/*topBar = {
                 GenericAppBar(title = "Create Note", icon = {
                     androidx.compose.material.Icon(
                         imageVector = ImageVector.vectorResource(R.drawable.blur),// TODO() исправить
@@ -70,15 +66,15 @@ fun CreateNoteScreen(
                         tint = Color.Black,
                     )
                 }, onIconClick = {
-                    /*viewModel.createNote(
+                    *//*viewModel.createNote(
                         currentTitle.value,
                         currentNote.value,
                         currentPhotos.value
-                    )*/
+                    )*//*
                     navController.popBackStack()
                 }, iconState = saveButtonState
                 )
-            },
+            },*/
 
 
                 content = {
