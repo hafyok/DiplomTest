@@ -11,6 +11,9 @@ object Constants {
     const val TABLE_NAME = "Notes"
     const val DATABASE_NAME = "NotesDatabase"
 
+    fun noteDetailNavigation(noteId : Int) = "noteDetail/$noteId"
+    fun noteEditNavigation(noteId : Int) = "noteEdit/$noteId"
+
     fun List<NoteEntity>?.orPlaceHolderList(): List<NoteEntity> {
         fun placeHolderList(): List<NoteEntity> {
             return listOf(NoteEntity(id = 0, title = "No Notes Found", note = "Please create a note.", dateUpdated = ""))

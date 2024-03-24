@@ -234,9 +234,9 @@ fun NoteListItem(
                 .combinedClickable(interactionSource = remember { MutableInteractionSource() },
                     indication = rememberRipple(bounded = false), // You can also change the color and radius of the ripple
                     onClick = {
-                        /*if (note.id != 0) {
-                            navController.navigate(Constants.noteDetailNavigation(note.id ?: 0))
-                        }*/
+                        if (note.id != 0) {
+                            navController.navigate(Constants.noteEditNavigation(note.id ?: 0))
+                        }
                     },
                     onLongClick = {
                         if (note.id != 0) {

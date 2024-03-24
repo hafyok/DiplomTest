@@ -2,9 +2,13 @@ package com.example.diplomtest.presentation.Navigation
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.navArgument
+import com.example.diplomtest.Constants
 import com.example.diplomtest.presentation.NotesScreen.CreateNoteScreen
+import com.example.diplomtest.presentation.NotesScreen.NoteEditScreen
 import com.example.diplomtest.presentation.NotesScreen.NotesList
 import com.example.diplomtest.presentation.StatsScreen.StatsContent
 import com.example.diplomtest.presentation.TimerScreen.TimerScreenContent
@@ -26,6 +30,16 @@ fun NavGraph(
         }
         composable("list_notes"){
             NotesList(navController = navHostController)
+        }
+        // Notes Edit page
+        composable(
+            Constants.NAVIGATION_NOTE_EDIT,
+            arguments = listOf(navArgument(Constants.NAVIGATION_NOTE_ID_Argument) {
+                type = NavType.IntType
+            })
+        ) { backStackEntry ->
+            backStackEntry.arguments?.getInt(Constants.NAVIGATION_NOTE_ID_Argument)
+                ?.let { NoteEditScreen(noteId = it, navHostController) }
         }
 
     }
