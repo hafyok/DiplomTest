@@ -23,7 +23,7 @@ import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 
 @Composable
-fun TestTimerScreen(
+fun TimerView(
     viewModel: CountDownTimerViewModel = viewModel(),
     timerViewModel: TimerViewModel = viewModel()
 ) {
@@ -83,19 +83,10 @@ fun TestTimerScreen(
     }
 }
 
-/*fun InsertTimer(timerData: TimerSessionData){
-    val viewModel: TimerViewModel = viewModel()
-    *//*val timerModel = TimerSessionEntity(
-        done = timerData.done,
-        categoty = timerData.categoty
-    )*//*
-    viewModel.insertTimer(timerData)
-    Log.d("MeLog", "База дынных")
-}*/
 
 @Preview
 @Composable
 fun PreviewTestTimerScreen(){
-    TestTimerScreen()
+    TimerView()
 
 }
