@@ -1,5 +1,6 @@
 package com.example.diplomtest.presentation.TimerScreen
 
+import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -8,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
+import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
@@ -39,12 +41,16 @@ fun TimerView(
         viewModel.apply {
 
             Text(text = timerText.value, fontSize = 28.sp)
+
+            LinearProgressIndicator(timeLeft.toFloat() / totalTimeInMillis.toFloat())
+
             Row {
                 Button(
                     onClick = {
                         timeLeft -= 300000
+                        totalTimeInMillis -= 300000
                         timerText.value = timeLeft.timeFormat()
-                        //Log.d("Timer", timeLeft.toString())
+                        Log.d("Timer", totalTimeInMillis.toString())
                     }
                 ) {
                     Text("-")
@@ -53,7 +59,10 @@ fun TimerView(
                 Button(onClick = {
                     if (isPlaying.value) {
                         stopCountDownTimer()
-                    } else startCountDownTimer()
+                    } else {
+                        //totalTimeInMillis = timeLeft
+                        startCountDownTimer(totalTimeInMillis)
+                    }
                     coroutineScope.launch {
                         val timerData = TimerSessionData(12, false, "TeeeSt")
                         timerViewModel.insertTimer(timerData)
@@ -66,8 +75,9 @@ fun TimerView(
                 Button(
                     onClick = {
                         timeLeft += 300000
+                        totalTimeInMillis += 300000
                         timerText.value = timeLeft.timeFormat()
-                        //Log.d("Timer", timeLeft.toString())
+                        Log.d("Timer", totalTimeInMillis.toString())
                     }
                 ) {
                     Text("+")
@@ -88,5 +98,4 @@ fun TimerView(
 @Composable
 fun PreviewTestTimerScreen(){
     TimerView()
-
 }

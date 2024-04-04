@@ -26,13 +26,15 @@ class CountDownTimerViewModel : ViewModel() {
     var timeLeft by mutableStateOf(initialTotalTimeInMillis)
     val countDownInterval = 1000L // 1 seconds is the lowest
 
+    var totalTimeInMillis = initialTotalTimeInMillis
+
     val timerText = mutableStateOf(timeLeft.timeFormat())
 
     val isPlaying = mutableStateOf(false)
 
-    fun startCountDownTimer() = viewModelScope.launch {
+    fun startCountDownTimer(timeInMillis: Long) = viewModelScope.launch {
         isPlaying.value = true
-        countDownTimer = object : CountDownTimer(timeLeft, countDownInterval) {
+        countDownTimer = object : CountDownTimer(timeInMillis, countDownInterval) {
             override fun onTick(currentTimeLeft: Long) {
                 timerText.value = currentTimeLeft.timeFormat()
                 timeLeft = currentTimeLeft
@@ -58,56 +60,4 @@ class CountDownTimerViewModel : ViewModel() {
     }
 }
 
-/*
-class CountDownTimerViewModel : ViewModel() {
 
-    private var countDownTimer: CountDownTimer? = null
-
-    */
-/*var userInputHour = mutableStateOf( TimeUnit.HOURS.toMillis(1))
-    var userInputMinute = mutableStateOf( TimeUnit.MINUTES.toMillis(10))
-    var userInputSecond = mutableStateOf( TimeUnit.SECONDS.toMillis(30))*//*
-
-
-    var userInputHour = mutableLongStateOf( TimeUnit.HOURS.toMillis(1L))
-    var userInputMinute = mutableLongStateOf( TimeUnit.MINUTES.toMillis(10L))
-    var userInputSecond = mutableLongStateOf( TimeUnit.SECONDS.toMillis(30L))
-
-    var initialTotalTimeInMillis = userInputHour.longValue + userInputMinute.value + userInputSecond.value
-    var timeLeft = mutableLongStateOf(initialTotalTimeInMillis)
-    val countDownInterval = 1000L // 1 seconds is the lowest
-
-    var timerText = mutableStateOf(timeLeft.value.timeFormat())
-
-    val isPlaying = mutableStateOf(false)
-
-    fun startCountDownTimer() = viewModelScope.launch {
-        isPlaying.value = true
-        countDownTimer = object : CountDownTimer(timeLeft.value, countDownInterval) {
-            override fun onTick(currentTimeLeft: Long) {
-                timerText = mutableStateOf( currentTimeLeft.timeFormat())
-                timeLeft = mutableLongStateOf( currentTimeLeft)
-
-                Log.d("TimerLog", timerText.value )
-                Log.d("TimerLog", timeLeft.value.toString() + "Left")
-            }
-
-            override fun onFinish() {
-                timerText = mutableStateOf( initialTotalTimeInMillis.timeFormat())
-                isPlaying.value = false
-            }
-        }.start()
-    }
-
-    fun stopCountDownTimer() = viewModelScope.launch {
-        isPlaying.value = false
-        countDownTimer?.cancel()
-    }
-
-    fun resetCountDownTimer() = viewModelScope.launch {
-        isPlaying.value = false
-        countDownTimer?.cancel()
-        timerText = mutableStateOf( initialTotalTimeInMillis.timeFormat())
-        timeLeft = mutableLongStateOf(initialTotalTimeInMillis)
-    }
-}*/
