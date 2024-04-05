@@ -58,6 +58,18 @@ class CountDownTimerViewModel : ViewModel() {
         timerText.value = initialTotalTimeInMillis.timeFormat()
         timeLeft = initialTotalTimeInMillis
     }
+
+    fun decreaseTime(){
+        timeLeft -= 300000
+        totalTimeInMillis -= 300000
+        timerText.value = timeLeft.timeFormat()
+    }
+
+    fun increase(){
+        timeLeft += 300000
+        totalTimeInMillis += 300000
+        timerText.value = timeLeft.timeFormat()
+    }
 }
 
 
