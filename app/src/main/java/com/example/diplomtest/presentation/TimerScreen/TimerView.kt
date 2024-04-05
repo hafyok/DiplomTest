@@ -52,11 +52,15 @@ fun TimerView(
                     if (isPlaying.value) {
                         stopCountDownTimer()
                     } else {
-                        //totalTimeInMillis = timeLeft
                         startCountDownTimer(totalTimeInMillis)
                     }
                     coroutineScope.launch {
-                        val timerData = TimerSessionData(12, false, "TeeeSt")
+                        val timerData = TimerSessionData(
+                            done = false,
+                            category = "TeSt",
+                            durationPlan = (totalTimeInMillis / 1000 / 60).toInt(),
+                            durationFact = null
+                        )
                         timerViewModel.insertTimer(timerData)
                         cancel()
                     }

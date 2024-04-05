@@ -8,6 +8,8 @@ class TimerMapper {
     fun mapModelToEntity(model: TimerSessionData) = TimerSessionEntity(
         id = model.id,
         done = model.done,
-        categoty = model.categoty
+        category = model.category,
+        durationPlan = model.durationPlan,
+        durationFact = model.durationFact
     )
 }

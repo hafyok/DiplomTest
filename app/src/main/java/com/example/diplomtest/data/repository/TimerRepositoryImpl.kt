@@ -16,21 +16,6 @@ class TimerRepositoryImpl(
 
     private val mapper = TimerMapper()
 
-    /*suspend fun insertTimer(timer: TimerSessionEntity) {
-        timerSessionDao.insertItem(timer)
-    }
-
-    suspend fun delete(timer: TimerSessionEntity) {
-        timerSessionDao.deleteItem(timer)
-    }*/
-
-    /*suspend fun deleteLastItem() {
-        val lastItem = timerSessionDao.getLastItem()
-        lastItem?.let {
-            timerSessionDao.deleteItem(it)
-        }
-    }*/
-
     override suspend fun insertTimer(timer: TimerSessionData) {
         timerSessionDao.insertItem(mapper.mapModelToEntity(timer))
     }
@@ -46,4 +31,19 @@ class TimerRepositoryImpl(
     override suspend fun getTimerList(): LiveData<List<TimerSessionData>> {
         TODO("Not yet implemented")
     }
+
+    /*suspend fun insertTimer(timer: TimerSessionEntity) {
+        timerSessionDao.insertItem(timer)
+    }
+
+    suspend fun delete(timer: TimerSessionEntity) {
+        timerSessionDao.deleteItem(timer)
+    }*/
+
+    /*suspend fun deleteLastItem() {
+        val lastItem = timerSessionDao.getLastItem()
+        lastItem?.let {
+            timerSessionDao.deleteItem(it)
+        }
+    }*/
 }
