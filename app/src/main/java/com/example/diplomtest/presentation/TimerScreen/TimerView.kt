@@ -4,7 +4,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
@@ -30,7 +30,7 @@ fun TimerView(
 
     Column(
         modifier = Modifier
-            .fillMaxSize()
+            .fillMaxWidth()
             .padding(bottom = 25.dp),
         verticalArrangement = Arrangement.Bottom,
         horizontalAlignment = Alignment.CenterHorizontally
@@ -57,7 +57,7 @@ fun TimerView(
                     coroutineScope.launch {
                         val timerData = TimerSessionData(
                             done = false,
-                            category = "TeSt",
+                            category = Category.currentCategory,
                             durationPlan = (totalTimeInMillis / 1000 / 60).toInt(),
                             durationFact = null
                         )

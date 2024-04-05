@@ -1,7 +1,7 @@
 package com.example.diplomtest.presentation.TimerScreen
 
-import android.util.Log
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyRow
@@ -9,6 +9,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
@@ -21,7 +22,9 @@ import androidx.compose.ui.unit.sp
 fun CategoryFun() {
     LazyRow(
         modifier = Modifier
-            .padding(8.dp)
+            .padding(8.dp),
+        horizontalArrangement = Arrangement.Center,
+        verticalAlignment = Alignment.Bottom
     ) {
         items(Category.categoryList) { category ->
             androidx.compose.material.Card(
@@ -29,7 +32,6 @@ fun CategoryFun() {
                     .padding(8.dp)
                     .clickable {
                         Category.currentCategory = category
-                        Log.d("TestCategory", Category.currentCategory)
                     },
                 elevation = 8.dp,
                 shape = RoundedCornerShape(16.dp),
