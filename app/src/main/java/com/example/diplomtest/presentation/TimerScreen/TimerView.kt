@@ -14,7 +14,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -24,7 +23,7 @@ import kotlinx.coroutines.launch
 
 @Composable
 fun TimerView(
-    viewModel: CountDownTimerViewModel = viewModel(), timerViewModel: TimerViewModel = viewModel()
+    viewModel: CountDownTimerViewModel, timerViewModel: TimerViewModel = viewModel()
 ) {
     val coroutineScope = rememberCoroutineScope()
 
@@ -85,8 +84,9 @@ fun TimerView(
 }
 
 
+/*
 @Preview
 @Composable
 fun PreviewTestTimerScreen() {
     TimerView()
-}
+}*/

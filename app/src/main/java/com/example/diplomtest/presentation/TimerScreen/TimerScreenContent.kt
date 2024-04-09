@@ -16,16 +16,14 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import com.example.diplomtest.presentation.Navigation.BottomNavigation
 
 //@Preview
 @Composable
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
-fun TimerScreenContent(navController: NavController){
+fun TimerScreenContent(navController: NavController, countDownTimerViewModel: CountDownTimerViewModel){
     var textState by rememberSaveable { mutableStateOf("Hello, World!") }
 
     Scaffold(
@@ -49,7 +47,7 @@ fun TimerScreenContent(navController: NavController){
                     Text("Click me")
                 }
 
-                TimerView()
+                TimerView(countDownTimerViewModel)
 
                 Spacer(modifier = Modifier.padding(10.dp))
 
@@ -76,9 +74,10 @@ fun TimerScreenContent(navController: NavController){
     )
 }
 
+/*
 @Preview
 @Composable
 fun PreviewTimerScreenContent(){
     val navController = rememberNavController()
     TimerScreenContent(navController)
-}
+}*/
