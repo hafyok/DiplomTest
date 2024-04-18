@@ -83,4 +83,6 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1")
 
     implementation ("io.coil-kt:coil-compose:2.2.2")
+
+    implementation ("co.yml:ycharts:2.1.0")
 }
