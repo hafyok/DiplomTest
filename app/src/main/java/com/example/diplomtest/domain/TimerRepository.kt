@@ -1,6 +1,7 @@
 package com.example.diplomtest.domain
 
 import androidx.lifecycle.LiveData
+import java.util.Date
 
 interface TimerRepository {
 
@@ -11,4 +12,6 @@ interface TimerRepository {
     suspend fun deleteLastItem()
 
     suspend fun getTimerList(): LiveData<List<TimerSessionData>>
+
+    suspend fun getAllDates(): List<Date>
 }

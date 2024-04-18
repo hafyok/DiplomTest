@@ -5,6 +5,7 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import java.util.Date
 
 
 @Dao
@@ -20,4 +21,7 @@ interface TimerSessionDao {
 
     @Query("SELECT * FROM TimerSessionEntity")
     fun getAllItems(): kotlinx.coroutines.flow.Flow<List<TimerSessionEntity>>
+
+    @Query("SELECT date FROM TimerSessionEntity")
+    suspend fun getAllDates(): List<Date>
 }

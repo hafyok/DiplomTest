@@ -1,5 +1,6 @@
 package com.example.diplomtest.presentation.StatsScreen
 
+import android.app.Application
 import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -15,6 +16,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -25,8 +27,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import kotlin.random.Random
 import co.yml.charts.axis.AxisData
+import co.yml.charts.ui.linechart.LineChart
 import co.yml.charts.ui.linechart.model.GridLines
 import co.yml.charts.ui.linechart.model.IntersectionPoint
 import co.yml.charts.ui.linechart.model.Line
@@ -36,14 +38,19 @@ import co.yml.charts.ui.linechart.model.LineStyle
 import co.yml.charts.ui.linechart.model.SelectionHighlightPoint
 import co.yml.charts.ui.linechart.model.SelectionHighlightPopUp
 import co.yml.charts.ui.linechart.model.ShadowUnderLine
+import com.example.diplomtest.data.database.AppDatabase
 import com.example.diplomtest.ui.theme.DiplomTestTheme
-import co.yml.charts.ui.linechart.LineChart
-
+import kotlin.random.Random
 
 
 //@Preview
 @Composable
 fun StatsContent(navController: NavController) {
+    val application = Application()
+    val viewModel = StatsViewModel(AppDatabase.getDatabase(application).timerSessionDao())
+    val scope = rememberCoroutineScope()
+
+
     val steps = 10
 
     val pointsList = getPointsList()
@@ -66,33 +73,12 @@ fun StatsContent(navController: NavController) {
             val yScale = (max - min) / steps.toFloat()
             String.format("%.1f", ((i * yScale) + min))
         }.build()
-    DiplomTestTheme {
-        val lineChartData = LineChartData(
-            linePlotData = LinePlotData(
-                lines = listOf(
-                    Line(
-                        dataPoints = pointsList,
-                        LineStyle(color = Color.Green, width = 1.0f),
-                        IntersectionPoint(color = Color.Blue, radius = 3.dp),
-                        SelectionHighlightPoint(),
-                        ShadowUnderLine(),
-                        SelectionHighlightPopUp()
-                    )
-                ),
-            ),
-            xAxisData = xAxisData,
-            yAxisData = yAxisData,
-            gridLines = GridLines(),
-            backgroundColor = Color.White
-        )
 
-        LineChart(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(300.dp),
-            lineChartData = lineChartData
-        )
-    }
+    /*LaunchedEffect(true) {
+        scope.launch(Dispatchers.IO) {
+            Log.d("DATES", viewModel.getAllDates().joinToString(", "))
+        }
+    }*/
 
     Column(
         modifier = Modifier
@@ -101,7 +87,33 @@ fun StatsContent(navController: NavController) {
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        DiplomTestTheme {
+            val lineChartData = LineChartData(
+                linePlotData = LinePlotData(
+                    lines = listOf(
+                        Line(
+                            dataPoints = pointsList,
+                            LineStyle(color = Color.Green, width = 1.0f),
+                            IntersectionPoint(color = Color.Blue, radius = 3.dp),
+                            SelectionHighlightPoint(),
+                            ShadowUnderLine(),
+                            SelectionHighlightPopUp()
+                        )
+                    ),
+                ),
+                xAxisData = xAxisData,
+                yAxisData = yAxisData,
+                gridLines = GridLines(),
+                backgroundColor = Color.White
+            )
 
+            LineChart(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(300.dp),
+                lineChartData = lineChartData
+            )
+        }
 
     }
 }

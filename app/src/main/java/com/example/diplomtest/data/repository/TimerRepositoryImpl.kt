@@ -6,6 +6,7 @@ import com.example.diplomtest.data.database.AppDatabase
 import com.example.diplomtest.data.mapper.TimerMapper
 import com.example.diplomtest.domain.TimerRepository
 import com.example.diplomtest.domain.TimerSessionData
+import java.util.Date
 
 class TimerRepositoryImpl(
     //private val timerSessionDao: TimerSessionDao
@@ -30,6 +31,10 @@ class TimerRepositoryImpl(
 
     override suspend fun getTimerList(): LiveData<List<TimerSessionData>> {
         TODO("Not yet implemented")
+    }
+
+    override suspend fun getAllDates(): List<Date> {
+        return timerSessionDao.getAllDates()
     }
 
     /*suspend fun insertTimer(timer: TimerSessionEntity) {
