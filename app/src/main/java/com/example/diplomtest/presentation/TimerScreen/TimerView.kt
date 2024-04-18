@@ -20,6 +20,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.diplomtest.domain.TimerSessionData
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
+import java.util.Date
 
 @Composable
 fun TimerView(
@@ -58,7 +59,8 @@ fun TimerView(
                             done = false,
                             category = Category.currentCategory,
                             durationPlan = (totalTimeInMillis / 1000 / 60).toInt(),
-                            durationFact = null
+                            durationFact = null,
+                            date = Date()
                         )
                         timerViewModel.insertTimer(timerData)
                         cancel()
