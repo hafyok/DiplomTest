@@ -24,4 +24,7 @@ interface TimerSessionDao {
 
     @Query("SELECT date FROM TimerSessionEntity")
     suspend fun getAllDates(): List<Date>
+
+    @Query("SELECT durationPlan FROM TimerSessionEntity")
+    suspend fun getSessions(): List<Int>
 }

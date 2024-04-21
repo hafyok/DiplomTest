@@ -14,4 +14,6 @@ interface TimerRepository {
     suspend fun getTimerList(): LiveData<List<TimerSessionData>>
 
     suspend fun getAllDates(): List<Date>
+
+    suspend fun getSessions(): List<Int>
 }

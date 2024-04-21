@@ -16,7 +16,12 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -28,6 +33,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import co.yml.charts.axis.AxisData
+import co.yml.charts.common.model.Point
 import co.yml.charts.ui.linechart.LineChart
 import co.yml.charts.ui.linechart.model.GridLines
 import co.yml.charts.ui.linechart.model.IntersectionPoint
@@ -40,6 +46,8 @@ import co.yml.charts.ui.linechart.model.SelectionHighlightPopUp
 import co.yml.charts.ui.linechart.model.ShadowUnderLine
 import com.example.diplomtest.data.database.AppDatabase
 import com.example.diplomtest.ui.theme.DiplomTestTheme
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import kotlin.random.Random
 
 
@@ -53,30 +61,50 @@ fun StatsContent(navController: NavController) {
 
     val steps = 10
 
-    val pointsList = getPointsList()
-    val max = getMax(pointsList)
-    val min = getMin(pointsList)
-    Log.d("MyLog", "Max: $max Min: $min")
-    val xAxisData = AxisData.Builder()
-        .axisStepSize(100.dp)
-        .backgroundColor(Color.Transparent)
-        .steps(pointsList.size - 1)
-        .labelData { i -> i.toString() + "d" }
-        .labelAndAxisLinePadding(15.dp)
-        .build()
+    //val pointsList = getPointsList()
+    var pointsList by remember { mutableStateOf(emptyList<Point>()) }
+    pointsList = listOf(Point(0f, 0f))
+    LaunchedEffect(true) {
+        scope.launch(Dispatchers.IO) {
+            viewModel.getPointsList().let { points ->
+                pointsList = points
+            }
+        }
+    }
 
-    val yAxisData = AxisData.Builder()
-        .steps(steps)
-        .backgroundColor(Color.Transparent)
-        .labelAndAxisLinePadding(20.dp)
-        .labelData { i ->
-            val yScale = (max - min) / steps.toFloat()
-            String.format("%.1f", ((i * yScale) + min))
-        }.build()
+    var xAxisData by remember {
+        mutableStateOf(AxisData.Builder().build())
+    }
+    var yAxisData by remember {
+        mutableStateOf(AxisData.Builder().build())
+    }
+
+    LaunchedEffect(key1 = true) {
+
+        val max = getMax(pointsList)
+        val min = getMin(pointsList)
+        Log.d("MyLog", "Max: $max Min: $min")
+        xAxisData = AxisData.Builder()
+            .axisStepSize(100.dp)
+            .backgroundColor(Color.Transparent)
+            .steps(pointsList.size - 1)
+            .labelData { i -> i.toString() + "d" }
+            .labelAndAxisLinePadding(15.dp)
+            .build()
+
+        yAxisData = AxisData.Builder()
+            .steps(steps)
+            .backgroundColor(Color.Transparent)
+            .labelAndAxisLinePadding(20.dp)
+            .labelData { i ->
+                val yScale = (max - min) / steps.toFloat()
+                String.format("%.1f", ((i * yScale) + min))
+            }.build()
+    }
 
     /*LaunchedEffect(true) {
         scope.launch(Dispatchers.IO) {
-            Log.d("DATES", viewModel.getAllDates().joinToString(", "))
+            Log.d("SESSIONS", viewModel.getDurationPlan().joinToString(", "))
         }
     }*/
 

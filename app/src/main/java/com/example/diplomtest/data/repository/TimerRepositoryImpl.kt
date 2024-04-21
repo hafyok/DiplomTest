@@ -37,6 +37,10 @@ class TimerRepositoryImpl(
         return timerSessionDao.getAllDates()
     }
 
+    override suspend fun getSessions(): List<Int> {
+        return timerSessionDao.getSessions()
+    }
+
     /*suspend fun insertTimer(timer: TimerSessionEntity) {
         timerSessionDao.insertItem(timer)
     }
