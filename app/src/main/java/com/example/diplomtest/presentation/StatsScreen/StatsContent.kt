@@ -1,7 +1,6 @@
 package com.example.diplomtest.presentation.StatsScreen
 
 import android.app.Application
-import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -48,7 +47,6 @@ import com.example.diplomtest.data.database.AppDatabase
 import com.example.diplomtest.ui.theme.DiplomTestTheme
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlin.random.Random
 
 
 //@Preview
@@ -57,21 +55,17 @@ fun StatsContent(navController: NavController) {
     val application = Application()
     val viewModel = StatsViewModel(AppDatabase.getDatabase(application).timerSessionDao())
     val scope = rememberCoroutineScope()
-
-
     val steps = 10
 
-    //val pointsList = getPointsList()
-    var pointsList by remember { mutableStateOf(emptyList<Point>()) }
-    pointsList = listOf(Point(0f, 0f))
-    LaunchedEffect(true) {
-        scope.launch(Dispatchers.IO) {
-            viewModel.getPointsList().let { points ->
-                pointsList = points
-            }
-        }
+    var pointsList by remember {
+        mutableStateOf(listOf(Point(0f, 0f)))
     }
-
+    var max by remember {
+        mutableStateOf(0f)
+    }
+    var min by remember {
+        mutableStateOf(0f)
+    }
     var xAxisData by remember {
         mutableStateOf(AxisData.Builder().build())
     }
@@ -79,13 +73,23 @@ fun StatsContent(navController: NavController) {
         mutableStateOf(AxisData.Builder().build())
     }
 
+    LaunchedEffect(true) {
+        scope.launch(Dispatchers.IO) {
+            viewModel.getPointsList().let { points ->
+                pointsList = points
+            }
+            max = getMax(pointsList)
+            min = getMin(pointsList)
+        }
+    }
+
     LaunchedEffect(key1 = true) {
 
-        val max = getMax(pointsList)
+        /*val max = getMax(pointsList)
         val min = getMin(pointsList)
-        Log.d("MyLog", "Max: $max Min: $min")
+        Log.d("MaxMin", "Max: $max Min: $min")*/
         xAxisData = AxisData.Builder()
-            .axisStepSize(100.dp)
+            .axisStepSize(50.dp)
             .backgroundColor(Color.Transparent)
             .steps(pointsList.size - 1)
             .labelData { i -> i.toString() + "d" }
@@ -138,39 +142,25 @@ fun StatsContent(navController: NavController) {
             LineChart(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(300.dp),
-                lineChartData = lineChartData
+                    .height(300.dp), lineChartData = lineChartData
             )
         }
 
     }
 }
 
-fun getPointsList(): List<co.yml.charts.common.model.Point> {
-    val list = ArrayList<co.yml.charts.common.model.Point>()
-    for (i in 0..31) {
-        list.add(
-            co.yml.charts.common.model.Point(
-                i.toFloat(),
-                Random.nextInt(50, 90).toFloat()
-            )
-        )
-    }
-    return list
-}
-
-private fun getMax(list: List<co.yml.charts.common.model.Point>): Float{
+private fun getMax(list: List<Point>): Float {
     var max = 0F
     list.forEach { point ->
-        if(max < point.y) max = point.y
+        if (max < point.y) max = point.y
     }
     return max
 }
 
-private fun getMin(list: List<co.yml.charts.common.model.Point>): Float{
+private fun getMin(list: List<Point>): Float {
     var min = 100F
     list.forEach { point ->
-        if(min > point.y) min = point.y
+        if (min > point.y) min = point.y
     }
     return min
 }
@@ -191,14 +181,12 @@ fun StatisticCard(title: String, data: List<Int>, color: Color) {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
-                text = title,
-                style = TextStyle(
+                text = title, style = TextStyle(
                     fontFamily = FontFamily.SansSerif,
                     fontSize = 20.sp,
                     fontWeight = FontWeight.Bold,
                     color = Color.Black
-                ),
-                modifier = Modifier.padding(bottom = 16.dp)
+                ), modifier = Modifier.padding(bottom = 16.dp)
             )
 
             // Реализуйте график с использованием библиотеки MPAndroidChart.
@@ -211,8 +199,7 @@ fun StatisticCard(title: String, data: List<Int>, color: Color) {
 @Composable
 fun NumberList() {
     LazyRow(
-        contentPadding = PaddingValues(16.dp),
-        horizontalArrangement = Arrangement.spacedBy(8.dp)
+        contentPadding = PaddingValues(16.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         items(10) { number ->
             NumberItem(number = number + 1)
@@ -234,8 +221,7 @@ fun NumberItem(number: Int) {
             modifier = Modifier.fillMaxSize(),
         ) {
             Text(
-                text = number.toString(),
-                style = TextStyle(
+                text = number.toString(), style = TextStyle(
                     fontSize = 20.sp,
                     fontWeight = FontWeight.Bold,
                 )
@@ -243,7 +229,6 @@ fun NumberItem(number: Int) {
         }
     }
 }
-
 
 
 @Composable
