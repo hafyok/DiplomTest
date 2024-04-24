@@ -38,6 +38,7 @@ fun StatsContent(navController: NavController) {
     ) {
         DiplomTestTheme {
             LineChartCard()
+            BarChartCard()
         }
 
     }
