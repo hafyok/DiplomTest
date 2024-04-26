@@ -1,6 +1,7 @@
 package com.example.diplomtest.presentation.TimerScreen
 
 import android.annotation.SuppressLint
+import android.app.Application
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -16,9 +17,11 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.diplomtest.presentation.Navigation.BottomNavigation
+import com.example.diplomtest.presentation.TimerScreen.Sound.SoundPlayer
 import com.example.diplomtest.presentation.TimerScreen.Timer.CountDownTimerViewModel
 import com.example.diplomtest.presentation.TimerScreen.Timer.TimerView
 
@@ -27,6 +30,7 @@ import com.example.diplomtest.presentation.TimerScreen.Timer.TimerView
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 fun TimerScreenContent(navController: NavController, countDownTimerViewModel: CountDownTimerViewModel){
     var textState by rememberSaveable { mutableStateOf("Hello, World!") }
+    val context = LocalContext.current
 
     Scaffold(
 
@@ -39,6 +43,7 @@ fun TimerScreenContent(navController: NavController, countDownTimerViewModel: Co
                 verticalArrangement = Arrangement.Bottom,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
+                SoundPlayer(context = context)
                 Text(textState)
                 Button(
                     onClick = {
