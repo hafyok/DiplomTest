@@ -1,6 +1,5 @@
 package com.example.diplomtest.presentation.StatsScreen
 
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.material.MaterialTheme
@@ -9,13 +8,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import co.yml.charts.common.components.Legends
-import co.yml.charts.common.model.LegendsConfig
+import co.yml.charts.axis.AxisData
+import co.yml.charts.axis.DataCategoryOptions
 import co.yml.charts.common.utils.DataUtils
-import co.yml.charts.common.utils.DataUtils.getGroupBarChartData
-import co.yml.charts.ui.barchart.GroupBarChart
-import co.yml.charts.ui.barchart.models.BarPlotData
-import co.yml.charts.ui.barchart.models.GroupBarChartData
+import co.yml.charts.ui.barchart.BarChart
+import co.yml.charts.ui.barchart.models.BarChartData
+import co.yml.charts.ui.barchart.models.BarChartType
+import co.yml.charts.ui.barchart.models.BarStyle
 import com.example.diplomtest.ui.theme.DiplomTestTheme
 
 @Preview
@@ -26,43 +25,37 @@ fun BarChartCard() {
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colors.background
         ) {
-            val barSize = 3
-            val groupBarData = getGroupBarChartData(50, 50, barSize)
-            val colorPaletteList = DataUtils.getColorPaletteList(barSize)
-            val groupBarPlotData = BarPlotData(
-                groupBarList = groupBarData,
-                barColorPaletteList = colorPaletteList
-            )
+            val maxRange = 50
+            val barData = DataUtils.getBarChartData(7, maxRange, BarChartType.VERTICAL, DataCategoryOptions())
             val yStepSize = 10
-            val xAxisData = co.yml.charts.axis.AxisData.Builder()
+
+            val xAxisData = AxisData.Builder()
                 .axisStepSize(30.dp)
-                .steps(groupBarData.size - 1)
-                .bottomPadding(10.dp)
-                .labelData { index -> groupBarData[index].label }
+                .steps(barData.size - 1)
+                .bottomPadding(40.dp)
+                .axisLabelAngle(20f)
+                .startDrawPadding(48.dp)
+                .labelData { index -> barData[index].label }
                 .build()
-            val yAxisData = co.yml.charts.axis.AxisData.Builder()
+            val yAxisData = AxisData.Builder()
                 .steps(yStepSize)
                 .labelAndAxisLinePadding(20.dp)
                 .axisOffset(20.dp)
-                .labelData { index -> (index * (50 / yStepSize)).toString() }
+                .labelData { index -> (index * (maxRange / yStepSize)).toString() }
                 .build()
-            val legendsConfig = LegendsConfig(
-                DataUtils.getLegendsLabelData(colorPaletteList),
-                gridColumnCount = 3
-            )
-            val groupBarChartData = GroupBarChartData(
-                barPlotData = groupBarPlotData,
+            val barChartData = BarChartData(
+                chartData = barData,
                 xAxisData = xAxisData,
-                yAxisData = yAxisData
+                yAxisData = yAxisData,
+                barStyle = BarStyle(
+                    paddingBetweenBars = 20.dp,
+                    barWidth = 25.dp
+                ),
+                showYAxis = true,
+                showXAxis = true,
+                horizontalExtraSpace = 10.dp,
             )
-            Column {
-                GroupBarChart(
-                    modifier = Modifier
-                        .height(400.dp),
-                    groupBarChartData = groupBarChartData
-                )
-                Legends(legendsConfig = legendsConfig)
-            }
+            BarChart(modifier = Modifier.height(350.dp), barChartData = barChartData)
         }
     }
 }
