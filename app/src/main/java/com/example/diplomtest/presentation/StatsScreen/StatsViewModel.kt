@@ -50,29 +50,30 @@ class StatsViewModel(private val db: TimerSessionDao): ViewModel() {
         return list
     }
 
-    fun getPointsList(): List<Point>{
+    fun getLineChartData(): List<Point>{
         return pointsList
     }
 
-    fun getBarChartData(
+    suspend fun getBarChartData(
         listSize: Int = 7,
         maxRange: Int = 60,
         barChartType: BarChartType = BarChartType.VERTICAL,
         dataCategoryOptions: DataCategoryOptions = DataCategoryOptions()
     ): List<BarData> {
         val list = arrayListOf<BarData>()
-        for (index in 0 until listSize) {
+        val sessionsDB = getDurationPlan()
+        sessionsDB.forEachIndexed{index, session ->
             val point = when (barChartType) {
                 BarChartType.VERTICAL -> {
                     Point(
                         index.toFloat(),
-                        "%.2f".format(Random.nextDouble(1.0, maxRange.toDouble())).toFloat()
+                        session.toFloat()
                     )
                 }
 
                 BarChartType.HORIZONTAL -> {
                     Point(
-                        "%.2f".format(Random.nextDouble(1.0, maxRange.toDouble())).toFloat(),
+                        session.toFloat(),
                         index.toFloat()
                     )
                 }

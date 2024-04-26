@@ -50,7 +50,7 @@ fun LineChartCard(viewModel: StatsViewModel) {
 
     LaunchedEffect(true) {
         scope.launch(Dispatchers.IO) {
-            viewModel.getPointsList().let { points ->
+            viewModel.getLineChartData().let { points ->
                 pointsList = points
             }
             max = getMax(pointsList)
