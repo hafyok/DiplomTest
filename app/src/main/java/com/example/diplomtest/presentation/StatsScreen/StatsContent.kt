@@ -25,6 +25,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.diplomtest.data.database.AppDatabase
+import com.example.diplomtest.presentation.StatsScreen.StatsCards.BarChartCard
+import com.example.diplomtest.presentation.StatsScreen.StatsCards.LineChartCard
 import com.example.diplomtest.ui.theme.DiplomTestTheme
 
 

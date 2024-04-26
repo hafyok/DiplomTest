@@ -1,4 +1,4 @@
-package com.example.diplomtest.presentation.StatsScreen
+package com.example.diplomtest.presentation.StatsScreen.StatsCards
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -23,6 +23,7 @@ import co.yml.charts.ui.linechart.model.LineStyle
 import co.yml.charts.ui.linechart.model.SelectionHighlightPoint
 import co.yml.charts.ui.linechart.model.SelectionHighlightPopUp
 import co.yml.charts.ui.linechart.model.ShadowUnderLine
+import com.example.diplomtest.presentation.StatsScreen.StatsViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 

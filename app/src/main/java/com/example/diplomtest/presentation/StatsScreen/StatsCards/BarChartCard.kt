@@ -1,4 +1,4 @@
-package com.example.diplomtest.presentation.StatsScreen
+package com.example.diplomtest.presentation.StatsScreen.StatsCards
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
@@ -19,6 +19,7 @@ import co.yml.charts.ui.barchart.BarChart
 import co.yml.charts.ui.barchart.models.BarChartData
 import co.yml.charts.ui.barchart.models.BarData
 import co.yml.charts.ui.barchart.models.BarStyle
+import com.example.diplomtest.presentation.StatsScreen.StatsViewModel
 import com.example.diplomtest.ui.theme.DiplomTestTheme
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
