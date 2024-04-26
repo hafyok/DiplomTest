@@ -1,12 +1,17 @@
 package com.example.diplomtest.presentation.StatsScreen
 
+import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import co.yml.charts.axis.DataCategoryOptions
 import co.yml.charts.common.model.Point
+import co.yml.charts.ui.barchart.models.BarChartType
+import co.yml.charts.ui.barchart.models.BarData
 import com.example.diplomtest.data.database.TimerSessionDao
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.util.Date
+import kotlin.random.Random
 
 class StatsViewModel(private val db: TimerSessionDao): ViewModel() {
     var data = db.getAllItems()
@@ -47,5 +52,43 @@ class StatsViewModel(private val db: TimerSessionDao): ViewModel() {
 
     fun getPointsList(): List<Point>{
         return pointsList
+    }
+
+    fun getBarChartData(
+        listSize: Int = 7,
+        maxRange: Int = 60,
+        barChartType: BarChartType = BarChartType.VERTICAL,
+        dataCategoryOptions: DataCategoryOptions = DataCategoryOptions()
+    ): List<BarData> {
+        val list = arrayListOf<BarData>()
+        for (index in 0 until listSize) {
+            val point = when (barChartType) {
+                BarChartType.VERTICAL -> {
+                    Point(
+                        index.toFloat(),
+                        "%.2f".format(Random.nextDouble(1.0, maxRange.toDouble())).toFloat()
+                    )
+                }
+
+                BarChartType.HORIZONTAL -> {
+                    Point(
+                        "%.2f".format(Random.nextDouble(1.0, maxRange.toDouble())).toFloat(),
+                        index.toFloat()
+                    )
+                }
+            }
+
+            list.add(
+                BarData(
+                    point = point,
+                    color = Color(
+                        Random.nextInt(256), Random.nextInt(256), Random.nextInt(256)
+                    ),
+                    dataCategoryOptions = dataCategoryOptions,
+                    label = "Bar$index",
+                )
+            )
+        }
+        return list
     }
 }

@@ -8,11 +8,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import co.yml.charts.axis.AxisData
-import co.yml.charts.axis.DataCategoryOptions
-import co.yml.charts.common.utils.DataUtils
 import co.yml.charts.ui.barchart.BarChart
 import co.yml.charts.ui.barchart.models.BarChartData
-import co.yml.charts.ui.barchart.models.BarChartType
 import co.yml.charts.ui.barchart.models.BarStyle
 import com.example.diplomtest.ui.theme.DiplomTestTheme
 
@@ -23,8 +20,9 @@ fun BarChartCard(viewModel: StatsViewModel) {
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colors.background
         ) {
-            val maxRange = 50
-            val barData = DataUtils.getBarChartData(7, maxRange, BarChartType.VERTICAL, DataCategoryOptions())
+            val maxRange = 60
+            //val barData = DataUtils.getBarChartData(7, maxRange, BarChartType.VERTICAL, DataCategoryOptions())
+            val barData = viewModel.getBarChartData(maxRange = maxRange)
             val yStepSize = 10
 
             val xAxisData = AxisData.Builder()
