@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
 import java.util.Date
 import kotlin.random.Random
 
-class StatsViewModel(private val db: TimerSessionDao): ViewModel() {
+class StatsViewModel(private val db: TimerSessionDao) : ViewModel() {
     var data = db.getAllItems()
     private var pointsList = listOf<Point>()
 
@@ -22,7 +22,7 @@ class StatsViewModel(private val db: TimerSessionDao): ViewModel() {
     private val getTimerUseCase = GetTimerUseCase()*/
     init {
         data = db.getAllItems()
-        viewModelScope.launch(Dispatchers.IO){
+        viewModelScope.launch(Dispatchers.IO) {
             pointsList = getPointsListFromDB()
         }
     }
@@ -31,11 +31,11 @@ class StatsViewModel(private val db: TimerSessionDao): ViewModel() {
         return db.getAllDates()
     }
 
-    private suspend fun getDurationPlan(): List<Int>{
+    private suspend fun getDurationPlan(): List<Int> {
         return db.getSessions()
     }
 
-    private suspend fun getPointsListFromDB(): List<Point>{
+    private suspend fun getPointsListFromDB(): List<Point> {
         val sessionsDB = getDurationPlan()
         val list = ArrayList<Point>()
         sessionsDB.forEachIndexed { index, session ->
@@ -50,7 +50,7 @@ class StatsViewModel(private val db: TimerSessionDao): ViewModel() {
         return list
     }
 
-    fun getLineChartData(): List<Point>{
+    fun getLineChartData(): List<Point> {
         return pointsList
     }
 
@@ -62,7 +62,7 @@ class StatsViewModel(private val db: TimerSessionDao): ViewModel() {
     ): List<BarData> {
         val list = arrayListOf<BarData>()
         val sessionsDB = getDurationPlan()
-        sessionsDB.forEachIndexed{index, session ->
+        sessionsDB.forEachIndexed { index, session ->
             val point = when (barChartType) {
                 BarChartType.VERTICAL -> {
                     Point(

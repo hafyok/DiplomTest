@@ -1,4 +1,4 @@
-package com.example.diplomtest.presentation.TimerScreen
+package com.example.diplomtest.presentation.TimerScreen.Timer
 
 import android.os.CountDownTimer
 import androidx.compose.runtime.getValue
@@ -6,7 +6,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.diplomtest.presentation.TimerScreen.TimeFormatExt.timeFormat
+import com.example.diplomtest.presentation.TimerScreen.Timer.TimeFormatExt.timeFormat
 import kotlinx.coroutines.launch
 import java.util.concurrent.TimeUnit
 

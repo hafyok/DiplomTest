@@ -5,7 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import com.example.diplomtest.presentation.MainScreen
-import com.example.diplomtest.presentation.TimerScreen.CountDownTimerViewModel
+import com.example.diplomtest.presentation.TimerScreen.Timer.CountDownTimerViewModel
 import com.example.diplomtest.ui.theme.DiplomTestTheme
 
 

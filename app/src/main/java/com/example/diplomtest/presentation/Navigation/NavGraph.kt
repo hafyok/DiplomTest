@@ -11,7 +11,7 @@ import com.example.diplomtest.presentation.NotesScreen.CreateNoteScreen
 import com.example.diplomtest.presentation.NotesScreen.NoteEditScreen
 import com.example.diplomtest.presentation.NotesScreen.NotesList
 import com.example.diplomtest.presentation.StatsScreen.StatsContent
-import com.example.diplomtest.presentation.TimerScreen.CountDownTimerViewModel
+import com.example.diplomtest.presentation.TimerScreen.Timer.CountDownTimerViewModel
 import com.example.diplomtest.presentation.TimerScreen.TimerScreenContent
 
 

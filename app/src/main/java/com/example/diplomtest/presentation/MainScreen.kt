@@ -6,7 +6,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.rememberNavController
 import com.example.diplomtest.presentation.Navigation.BottomNavigation
 import com.example.diplomtest.presentation.Navigation.NavGraph
-import com.example.diplomtest.presentation.TimerScreen.CountDownTimerViewModel
+import com.example.diplomtest.presentation.TimerScreen.Timer.CountDownTimerViewModel
 
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")

@@ -1,4 +1,4 @@
-package com.example.diplomtest.presentation.TimerScreen
+package com.example.diplomtest.presentation.TimerScreen.Timer
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel

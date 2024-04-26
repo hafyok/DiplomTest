@@ -19,6 +19,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.diplomtest.presentation.Navigation.BottomNavigation
+import com.example.diplomtest.presentation.TimerScreen.Timer.CountDownTimerViewModel
+import com.example.diplomtest.presentation.TimerScreen.Timer.TimerView
 
 //@Preview
 @Composable

@@ -1,4 +1,4 @@
-package com.example.diplomtest.presentation.TimerScreen
+package com.example.diplomtest.presentation.TimerScreen.Timer
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -18,6 +18,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.diplomtest.domain.TimerSessionData
+import com.example.diplomtest.presentation.TimerScreen.Category
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 import java.util.Date
