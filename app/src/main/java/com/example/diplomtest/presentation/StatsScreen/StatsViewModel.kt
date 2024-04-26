@@ -1,19 +1,12 @@
 package com.example.diplomtest.presentation.StatsScreen
 
-import android.util.Log
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.rememberCoroutineScope
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import co.yml.charts.common.model.Point
 import com.example.diplomtest.data.database.TimerSessionDao
-import com.example.diplomtest.data.repository.TimerRepositoryImpl
-import com.example.diplomtest.domain.useCases.GetTimerUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.util.Date
-import kotlin.random.Random
 
 class StatsViewModel(private val db: TimerSessionDao): ViewModel() {
     var data = db.getAllItems()
@@ -24,7 +17,6 @@ class StatsViewModel(private val db: TimerSessionDao): ViewModel() {
     private val getTimerUseCase = GetTimerUseCase()*/
     init {
         data = db.getAllItems()
-        Log.d("StatsViewModel", "INIT")
         viewModelScope.launch(Dispatchers.IO){
             pointsList = getPointsListFromDB()
         }
@@ -34,14 +26,13 @@ class StatsViewModel(private val db: TimerSessionDao): ViewModel() {
         return db.getAllDates()
     }
 
-    suspend fun getDurationPlan(): List<Int>{
+    private suspend fun getDurationPlan(): List<Int>{
         return db.getSessions()
     }
 
     private suspend fun getPointsListFromDB(): List<Point>{
-        val sessionsDB = db.getSessions()
+        val sessionsDB = getDurationPlan()
         val list = ArrayList<Point>()
-        Log.d("StatsViewModel", "getPointsListFromDB start")
         sessionsDB.forEachIndexed { index, session ->
             list.add(
                 Point(
@@ -50,11 +41,6 @@ class StatsViewModel(private val db: TimerSessionDao): ViewModel() {
                 )
             )
         }
-
-        list.forEach{
-            Log.d("StatsViewModel", "${it.x} , ${it.y}")
-        }
-
 
         return list
     }

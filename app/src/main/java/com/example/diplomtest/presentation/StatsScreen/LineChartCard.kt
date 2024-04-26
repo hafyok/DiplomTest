@@ -1,6 +1,5 @@
 package com.example.diplomtest.presentation.StatsScreen
 
-import android.app.Application
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.runtime.Composable
@@ -24,15 +23,12 @@ import co.yml.charts.ui.linechart.model.LineStyle
 import co.yml.charts.ui.linechart.model.SelectionHighlightPoint
 import co.yml.charts.ui.linechart.model.SelectionHighlightPopUp
 import co.yml.charts.ui.linechart.model.ShadowUnderLine
-import com.example.diplomtest.data.database.AppDatabase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 
 @Composable
-fun LineChartCard() {
-    val application = Application()
-    val viewModel = StatsViewModel(AppDatabase.getDatabase(application).timerSessionDao())
+fun LineChartCard(viewModel: StatsViewModel) {
     val scope = rememberCoroutineScope()
     val steps = 10
 

@@ -6,7 +6,6 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import co.yml.charts.axis.AxisData
 import co.yml.charts.axis.DataCategoryOptions
@@ -17,9 +16,8 @@ import co.yml.charts.ui.barchart.models.BarChartType
 import co.yml.charts.ui.barchart.models.BarStyle
 import com.example.diplomtest.ui.theme.DiplomTestTheme
 
-@Preview
 @Composable
-fun BarChartCard() {
+fun BarChartCard(viewModel: StatsViewModel) {
     DiplomTestTheme {
         Surface(
             modifier = Modifier.fillMaxSize(),

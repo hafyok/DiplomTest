@@ -1,5 +1,6 @@
 package com.example.diplomtest.presentation.StatsScreen
 
+import android.app.Application
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -23,12 +24,15 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.example.diplomtest.data.database.AppDatabase
 import com.example.diplomtest.ui.theme.DiplomTestTheme
 
 
 //@Preview
 @Composable
 fun StatsContent(navController: NavController) {
+    val application = Application()
+    val viewModel = StatsViewModel(AppDatabase.getDatabase(application).timerSessionDao())
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -37,8 +41,8 @@ fun StatsContent(navController: NavController) {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         DiplomTestTheme {
-            LineChartCard()
-            BarChartCard()
+            LineChartCard(viewModel)
+            BarChartCard(viewModel)
         }
 
     }
