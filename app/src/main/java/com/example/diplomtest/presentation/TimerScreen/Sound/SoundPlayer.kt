@@ -1,13 +1,16 @@
 package com.example.diplomtest.presentation.TimerScreen.Sound
 
-import android.content.Context
-import android.media.MediaPlayer
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
-import androidx.compose.material.*
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
@@ -15,8 +18,7 @@ import androidx.compose.ui.unit.dp
 import com.example.diplomtest.R
 
 @Composable
-fun SoundPlayer(context: Context){
-    val mp: MediaPlayer = MediaPlayer.create(context, R.raw.lofi)
+fun SoundPlayer(viewModel: SoundPlayerViewModel){
 
     Column(
         /*modifier = Modifier.fillMaxWidth(),
@@ -31,16 +33,16 @@ fun SoundPlayer(context: Context){
                 .height(160.dp)
                 .width(160.dp)
                 .padding(32.dp)
-                .background(Color.Black)
+                .background(Color.White)
         )
 
         Row() {
 
-            IconButton(onClick = { mp.start() }, modifier = Modifier.size(35.dp)) {
+            IconButton(onClick = { viewModel.audioStart() }, modifier = Modifier.size(35.dp)) {
                 Icon(painter = painterResource(id = R.drawable.play_icon), contentDescription = "")
             }
 
-            IconButton(onClick = { mp.pause() }, modifier = Modifier.size(35.dp)) {
+            IconButton(onClick = { viewModel.audioPause() }, modifier = Modifier.size(35.dp)) {
                 Icon(painter = painterResource(id = R.drawable.ic_pause), contentDescription = "")
             }
         }

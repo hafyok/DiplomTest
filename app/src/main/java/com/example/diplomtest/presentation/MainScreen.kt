@@ -6,19 +6,23 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.rememberNavController
 import com.example.diplomtest.presentation.Navigation.BottomNavigation
 import com.example.diplomtest.presentation.Navigation.NavGraph
+import com.example.diplomtest.presentation.TimerScreen.Sound.SoundPlayerViewModel
 import com.example.diplomtest.presentation.TimerScreen.Timer.CountDownTimerViewModel
 
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
-fun MainScreen(countDownTimerViewModel: CountDownTimerViewModel) {
+fun MainScreen(
+    countDownTimerViewModel: CountDownTimerViewModel,
+    soundPlayerViewModel: SoundPlayerViewModel
+) {
     val navController = rememberNavController()
     Scaffold(
         bottomBar = {
             BottomNavigation(navController = navController)
         }
     ) {
-        NavGraph(navHostController = navController, countDownTimerViewModel)
+        NavGraph(navHostController = navController, countDownTimerViewModel, soundPlayerViewModel)
     }
 }
 

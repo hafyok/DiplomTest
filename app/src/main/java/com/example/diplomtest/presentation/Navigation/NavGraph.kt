@@ -11,6 +11,7 @@ import com.example.diplomtest.presentation.NotesScreen.CreateNoteScreen
 import com.example.diplomtest.presentation.NotesScreen.NoteEditScreen
 import com.example.diplomtest.presentation.NotesScreen.NotesList
 import com.example.diplomtest.presentation.StatsScreen.StatsContent
+import com.example.diplomtest.presentation.TimerScreen.Sound.SoundPlayerViewModel
 import com.example.diplomtest.presentation.TimerScreen.Timer.CountDownTimerViewModel
 import com.example.diplomtest.presentation.TimerScreen.TimerScreenContent
 
@@ -18,11 +19,12 @@ import com.example.diplomtest.presentation.TimerScreen.TimerScreenContent
 @Composable
 fun NavGraph(
     navHostController: NavHostController,
-    countDownTimerViewModel: CountDownTimerViewModel
+    countDownTimerViewModel: CountDownTimerViewModel,
+    soundPlayerViewModel: SoundPlayerViewModel
 ) {
     NavHost(navController = navHostController, startDestination = "timer_screen") {
         composable("timer_screen") {
-            TimerScreenContent(navHostController, countDownTimerViewModel)
+            TimerScreenContent(navHostController, countDownTimerViewModel, soundPlayerViewModel)
         }
         composable("stats_screen") {
             StatsContent(navHostController)
