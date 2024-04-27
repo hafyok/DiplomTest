@@ -58,15 +58,15 @@ fun SoundPlayer(viewModel: SoundPlayerViewModel) {
                 Text(text = "LoFi",
                     Modifier
                         .padding(vertical = 4.dp)
-                        .clickable { })
+                        .clickable { viewModel.changeAudioLofi()})
                 Text(text = "White Noises",
                     Modifier
                         .padding(vertical = 4.dp)
-                        .clickable { })
+                        .clickable { viewModel.changeAudioWhiteNoise()})
                 Text(text = "Binaural beats",
                     Modifier
                         .padding(vertical = 4.dp)
-                        .clickable { })
+                        .clickable { viewModel.changeAudioLofi()})
             }
         }
 
