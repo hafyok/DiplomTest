@@ -3,6 +3,7 @@ package com.example.diplomtest.presentation.TimerScreen
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -12,14 +13,14 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.diplomtest.presentation.Navigation.BottomNavigation
-import com.example.diplomtest.presentation.TimerScreen.Sound.SoundPlayer
+import com.example.diplomtest.presentation.TimerScreen.Sound.ModalContent
 import com.example.diplomtest.presentation.TimerScreen.Sound.SoundPlayerViewModel
 import com.example.diplomtest.presentation.TimerScreen.Timer.CountDownTimerViewModel
 import com.example.diplomtest.presentation.TimerScreen.Timer.TimerView
@@ -32,7 +33,8 @@ fun TimerScreenContent(
     countDownTimerViewModel: CountDownTimerViewModel,
     soundPlayerViewModel: SoundPlayerViewModel
 ) {
-    var textState by rememberSaveable { mutableStateOf("Hello, World!") }
+    var isModalVisible by remember { mutableStateOf(false) }
+
 
     Scaffold(
         content = { paddingValues ->
@@ -44,15 +46,20 @@ fun TimerScreenContent(
                 verticalArrangement = Arrangement.Bottom,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                SoundPlayer(viewModel = soundPlayerViewModel)
-                Text(textState)
-                Button(
-                    onClick = {
-                        textState = "Button clicked"
-                    },
-                    modifier = Modifier.padding(8.dp),
-                ) {
-                    Text("Click me")
+                Row {
+                    //SoundPlayer(viewModel = soundPlayerViewModel)
+                    Button(
+                        onClick = { isModalVisible = true },
+                        modifier = Modifier.padding(8.dp),
+                    ) {
+                        Text("Music")
+                    }
+                }
+                if (isModalVisible) {
+                    ModalContent(
+                        onDismissRequest = { isModalVisible = false },
+                        soundPlayerViewModel
+                    )
                 }
 
                 TimerView(countDownTimerViewModel)
@@ -64,17 +71,6 @@ fun TimerScreenContent(
 
             }
         },
-
-        /*floatingActionButton = {
-            Column {
-                FloatingActionButton(
-                    onClick = { textState = "Fab clicked" },
-                    modifier = Modifier.padding(16.dp),
-                ) {
-                    Icon(Icons.Default.Favorite, contentDescription = "Favorite")
-                }
-            }
-        },*/
 
         bottomBar = {
             BottomNavigation(navController = navController)
