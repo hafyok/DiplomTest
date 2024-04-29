@@ -29,8 +29,7 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.example.diplomtest.Constants
-import com.example.diplomtest.Constants.orPlaceHolderList
+import com.example.diplomtest.presentation.NotesScreen.Constants.orPlaceHolderList
 import com.example.diplomtest.R
 import com.example.diplomtest.data.database.AppDatabase
 import com.example.diplomtest.data.database.NoteEntity

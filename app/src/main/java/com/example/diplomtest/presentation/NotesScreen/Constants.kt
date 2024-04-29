@@ -1,4 +1,4 @@
-package com.example.diplomtest
+package com.example.diplomtest.presentation.NotesScreen
 
 import com.example.diplomtest.data.database.NoteEntity
 

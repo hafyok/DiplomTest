@@ -35,7 +35,6 @@ import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
-import com.example.diplomtest.Constants
 import com.example.diplomtest.R
 import com.example.diplomtest.data.database.AppDatabase
 import com.example.diplomtest.data.database.NoteEntity
