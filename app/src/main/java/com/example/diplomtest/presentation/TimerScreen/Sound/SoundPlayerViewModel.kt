@@ -5,6 +5,7 @@ import android.media.MediaPlayer
 import androidx.lifecycle.ViewModel
 import com.example.diplomtest.R
 
+//TODO() проверить утечку памяти (private val context: Context)
 class SoundPlayerViewModel(private val context: Context): ViewModel() {
     private var mp: MediaPlayer = MediaPlayer.create(context, R.raw.lofi)
 
@@ -28,6 +29,10 @@ class SoundPlayerViewModel(private val context: Context): ViewModel() {
         audioStart()
     }
 
-    //TODO() скачать биты
+    fun changeAudioBeats(){
+        audioPause()
+        mp = MediaPlayer.create(context, R.raw.binaural_beats_40hz)
+        audioStart()
+    }
 
 }

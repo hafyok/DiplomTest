@@ -66,7 +66,7 @@ fun SoundPlayer(viewModel: SoundPlayerViewModel) {
                 Text(text = "Binaural beats",
                     Modifier
                         .padding(vertical = 4.dp)
-                        .clickable { viewModel.changeAudioLofi()})
+                        .clickable { viewModel.changeAudioBeats()})
             }
         }
 
