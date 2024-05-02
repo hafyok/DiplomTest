@@ -56,7 +56,7 @@ fun NotesList(navController: NavController) {
             Scaffold(
                 topBar = {
                     GenericAppBar(
-                        title = stringResource(R.string.notes_title), //TODO() исправить
+                        title = stringResource(R.string.delete_all_notes), //TODO() исправить
                         onIconClick = {
                             if (notes.value?.isNotEmpty() == true) {
                                 openDialog.value = true

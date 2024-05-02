@@ -7,13 +7,14 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.ShoppingCart
-import androidx.compose.material.icons.outlined.Home
-import androidx.compose.material.icons.outlined.ShoppingCart
+import androidx.compose.material.icons.automirrored.filled.Notes
+import androidx.compose.material.icons.automirrored.outlined.Notes
+import androidx.compose.material.icons.filled.TaskAlt
+import androidx.compose.material.icons.outlined.TaskAlt
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Tab
 import androidx.compose.material3.TabRow
@@ -27,15 +28,17 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 
 @Composable
 fun NotesPurposeScreen(navController: NavController) {
     val tabItems = listOf(
-        TabItem("Home", Icons.Outlined.Home, Icons.Filled.Home) {
+        TabItem("Notes", Icons.AutoMirrored.Outlined.Notes, Icons.AutoMirrored.Filled.Notes) {
             NotesList(navController = navController)
         },
-        TabItem("Browse", Icons.Outlined.ShoppingCart, Icons.Filled.ShoppingCart) {
+        TabItem("Tasks", Icons.Outlined.TaskAlt, Icons.Filled.TaskAlt) {
             DummyContent2(
                 index = 1
             )
@@ -104,3 +107,15 @@ data class TabItem(
     val selectedIcon: ImageVector,
     val content: @Composable () -> Unit
 )
+
+@Composable
+fun DummyContent2(index: Int) {
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp),
+        contentAlignment = Alignment.Center
+    ) {
+        Text(text = "Content for Tab $index", fontSize = 18.sp)
+    }
+}
