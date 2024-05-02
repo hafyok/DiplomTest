@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material.icons.Icons
@@ -28,10 +27,9 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.diplomtest.presentation.NotesScreen.Notes.NotesList
+import com.example.diplomtest.presentation.NotesScreen.Tasks.TaskScreen
 
 @Composable
 fun NotesPurposeScreen(navController: NavController) {
@@ -40,9 +38,7 @@ fun NotesPurposeScreen(navController: NavController) {
             NotesList(navController = navController)
         },
         TabItem("Tasks", Icons.Outlined.TaskAlt, Icons.Filled.TaskAlt) {
-            DummyContent2(
-                index = 1
-            )
+            TaskScreen()
         }
     )
     var selectedTabIndex by remember {
@@ -108,15 +104,3 @@ data class TabItem(
     val selectedIcon: ImageVector,
     val content: @Composable () -> Unit
 )
-
-@Composable
-fun DummyContent2(index: Int) {
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp),
-        contentAlignment = Alignment.Center
-    ) {
-        Text(text = "Content for Tab $index", fontSize = 18.sp)
-    }
-}

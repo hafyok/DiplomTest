@@ -8,4 +8,6 @@
     <string name="delete_all_notes">Delete all notes</string>
     <string name="create_note">Create note</string>
     <string name="clear_search">Clear search</string>
+
+    <string name="todo_input_bar_hint">Write your todo</string>
 </resources>

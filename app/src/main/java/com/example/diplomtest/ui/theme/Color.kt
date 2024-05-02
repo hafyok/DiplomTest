@@ -14,3 +14,13 @@ val Navy = Color(0xFF073042)
 val Blue = Color(0xFF4285F4)
 val LightBlue = Color(0xFFD7EFFE)
 val Chartreuse = Color(0xFFEFF7CF)
+
+val PrimaryColor = Color(0xFF0F0A2C)
+val PrimaryLightColor = Color(0xFF82BD85)
+
+val TodoItemBackgroundColor = PrimaryLightColor
+val TodoItemIconColor = PrimaryColor
+val TodoItemTextColor = PrimaryColor
+
+val TodoInputBarBackgroundColor = PrimaryColor
+val TodoInputBarFabColor = PrimaryLightColor
