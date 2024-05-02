@@ -9,7 +9,7 @@ import androidx.navigation.navArgument
 import com.example.diplomtest.presentation.NotesScreen.Constants
 import com.example.diplomtest.presentation.NotesScreen.CreateNoteScreen
 import com.example.diplomtest.presentation.NotesScreen.NoteEditScreen
-import com.example.diplomtest.presentation.NotesScreen.NotesList
+import com.example.diplomtest.presentation.NotesScreen.NotesPurposeScreen
 import com.example.diplomtest.presentation.StatsScreen.StatsContent
 import com.example.diplomtest.presentation.TimerScreen.Sound.SoundPlayerViewModel
 import com.example.diplomtest.presentation.TimerScreen.Timer.CountDownTimerViewModel
@@ -32,8 +32,8 @@ fun NavGraph(
         composable("notesCreated") {
             CreateNoteScreen(navHostController)
         }
-        composable("list_notes"){
-            NotesList(navController = navHostController)
+        composable("notes_and_purpose_screen"){
+             NotesPurposeScreen(navController = navHostController)
         }
         // Notes Edit page
         composable(

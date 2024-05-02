@@ -7,14 +7,11 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.ShoppingCart
-import androidx.compose.material.icons.outlined.AccountCircle
 import androidx.compose.material.icons.outlined.Home
 import androidx.compose.material.icons.outlined.ShoppingCart
 import androidx.compose.material3.Icon
@@ -29,14 +26,11 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import androidx.navigation.compose.rememberNavController
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.navigation.NavController
 
 @Composable
-fun Greeting() {
-    val navController = rememberNavController()
+fun NotesPurposeScreen(navController: NavController) {
     val tabItems = listOf(
         TabItem("Home", Icons.Outlined.Home, Icons.Filled.Home) {
             NotesList(navController = navController)
@@ -44,11 +38,6 @@ fun Greeting() {
         TabItem("Browse", Icons.Outlined.ShoppingCart, Icons.Filled.ShoppingCart) {
             DummyContent2(
                 index = 1
-            )
-        },
-        TabItem("Account", Icons.Outlined.AccountCircle, Icons.Filled.AccountCircle) {
-            DummyContent3(
-                index = 2
             )
         }
     )
@@ -105,58 +94,13 @@ fun Greeting() {
             }
         }
 
-        // column
     }
 
-
 }
 
-@Preview(showSystemUi = true)
-@Composable
-fun GreetingPreview() {
-    Greeting()
-
-}
-
-/*data class TabItem(
+data class TabItem(
     val title: String,
     val unselectedIcon: ImageVector,
     val selectedIcon: ImageVector,
     val content: @Composable () -> Unit
-)*/
-
-@Composable
-fun DummyContent(index: Int) {
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp),
-        contentAlignment = Alignment.Center
-    ) {
-        Text(text = "Content for Tab $index", fontSize = 18.sp)
-    }
-}
-
-@Composable
-fun DummyContent2(index: Int) {
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp),
-        contentAlignment = Alignment.Center
-    ) {
-        Text(text = "Content for Tab $index", fontSize = 18.sp)
-    }
-}
-
-@Composable
-fun DummyContent3(index: Int) {
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp),
-        contentAlignment = Alignment.Center
-    ) {
-        Text(text = "Content for Tab $index", fontSize = 18.sp)
-    }
-}
+)
