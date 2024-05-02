@@ -54,9 +54,9 @@ fun NotesList(navController: NavController) {
         // A surface container using the 'background' color from the theme
         Surface(modifier = Modifier.fillMaxSize()) {
             Scaffold(
-                topBar = {
+                topBar = { //TODO() исправить topBar
                     GenericAppBar(
-                        title = stringResource(R.string.delete_all_notes), //TODO() исправить
+                        title = stringResource(R.string.delete_all_notes),
                         onIconClick = {
                             if (notes.value?.isNotEmpty() == true) {
                                 openDialog.value = true
@@ -70,9 +70,9 @@ fun NotesList(navController: NavController) {
                         icon = {
                             Icon(
                                 imageVector = ImageVector.vectorResource(
-                                    id = R.drawable.baseline_notes_24 //TODO() исправить (note_delete)
+                                    id = R.drawable.ic_delete_all
                                 ),
-                                contentDescription = stringResource(id = R.string.app_name), //TODO() исправить (delete_note)
+                                contentDescription = stringResource(id = R.string.delete_all_notes),
                                 tint = Color.Black
                             )
                         },
@@ -82,9 +82,9 @@ fun NotesList(navController: NavController) {
                 },
                 floatingActionButton = {
                     NotesFab(
-                        contentDescription = stringResource(R.string.app_name), //TODO() исправить (create_note)
+                        contentDescription = stringResource(R.string.create_note),
                         action = { navController.navigate(Constants.NAVIGATION_NOTES_CREATE) },
-                        icon = R.drawable.baseline_notes_24 //TODO() исправить (note_add_icon)
+                        icon = R.drawable.ic_create_note
                     )
                 },
                 bottomBar = {
@@ -92,7 +92,7 @@ fun NotesList(navController: NavController) {
                 }
 
             ) {
-                Column() {
+                Column {
                     SearchBar(notesQuery)
                     NotesList(
                         notes = notes.value.orPlaceHolderList(),
@@ -142,9 +142,9 @@ fun SearchBar(query: MutableState<String>) {
                 ) {
                     IconButton(onClick = { query.value = "" }) {
                         Icon(
-                            imageVector = ImageVector.vectorResource(id = R.drawable.baseline_notes_24), //TODO() исправить (icon_cross)
+                            imageVector = ImageVector.vectorResource(id = R.drawable.ic_clear),
                             contentDescription = stringResource(
-                                R.string.app_name //TODO() исправить (clear_search)
+                                R.string.clear_search
                             )
                         )
                     }
@@ -249,9 +249,9 @@ fun NoteListItem(
                 )
 
         ) {
-            Row() {
+            Row {
 
-                Column() {
+                Column {
                     Text(
                         text = note.title,
                         color = Color.Black,
@@ -307,7 +307,7 @@ fun DeleteDialog(
                 Text(text = "Delete Note")
             },
             text = {
-                Column() {
+                Column {
                     Text(text.value)
                 }
             },
@@ -316,7 +316,7 @@ fun DeleteDialog(
                     modifier = Modifier.padding(all = 8.dp),
                     horizontalArrangement = Arrangement.Center
                 ) {
-                    Column() {
+                    Column {
                         Button(
                             modifier = Modifier.fillMaxWidth(),
                             colors = ButtonDefaults.buttonColors(
