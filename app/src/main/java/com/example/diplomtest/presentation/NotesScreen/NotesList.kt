@@ -29,11 +29,11 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.example.diplomtest.presentation.NotesScreen.Constants.orPlaceHolderList
 import com.example.diplomtest.R
 import com.example.diplomtest.data.database.AppDatabase
 import com.example.diplomtest.data.database.NoteEntity
 import com.example.diplomtest.data.database.getDay
+import com.example.diplomtest.presentation.NotesScreen.Constants.orPlaceHolderList
 import com.example.diplomtest.ui.theme.DiplomTestTheme
 import com.example.diplomtest.ui.theme.noteBGBlue
 import com.example.diplomtest.ui.theme.noteBGYellow
@@ -52,11 +52,11 @@ fun NotesList(navController: NavController) {
     val context = LocalContext.current
     DiplomTestTheme {
         // A surface container using the 'background' color from the theme
-        Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colors.primary) {
+        Surface(modifier = Modifier.fillMaxSize()) {
             Scaffold(
                 topBar = {
                     GenericAppBar(
-                        title = stringResource(R.string.app_name), //TODO() исправить
+                        title = stringResource(R.string.notes_title), //TODO() исправить
                         onIconClick = {
                             if (notes.value?.isNotEmpty() == true) {
                                 openDialog.value = true
@@ -167,9 +167,9 @@ fun NotesList(
     var previousHeader = ""
     LazyColumn(
         contentPadding = PaddingValues(12.dp),
-        modifier = Modifier.background(MaterialTheme.colors.primary)
+        modifier = Modifier.background(Color.Transparent)
     ) {
-        val queriedNotes = if (query.value.isEmpty()){
+        val queriedNotes = if (query.value.isEmpty()) {
             notes
         } else {
             notes.filter { it.note.contains(query.value) || it.title.contains(query.value) }
@@ -188,14 +188,14 @@ fun NotesList(
                         .fillMaxWidth()
                         .height(6.dp)
                 )
-                previousHeader =  note.getDay()
+                previousHeader = note.getDay()
             }
 
 
             NoteListItem(
                 note,
                 openDialog,
-                deleteText = deleteText ,
+                deleteText = deleteText,
                 navController,
                 notesToDelete = notesToDelete,
                 noteBackGround = if (index % 2 == 0) {
@@ -222,9 +222,11 @@ fun NoteListItem(
     notesToDelete: MutableState<List<NoteEntity>>
 ) {
 
-    return Box(modifier = Modifier
-        .height(120.dp)
-        .clip(RoundedCornerShape(12.dp))) {
+    return Box(
+        modifier = Modifier
+            .height(120.dp)
+            .clip(RoundedCornerShape(12.dp))
+    ) {
         Column(
             modifier = Modifier
                 .background(noteBackGround)
@@ -247,22 +249,7 @@ fun NoteListItem(
                 )
 
         ) {
-            Row(){
-                /*if (note.imageUri != null && note.imageUri.isNotEmpty()){
-                    // load firs image into view
-                    Image(
-                        painter = rememberAsyncImagePainter(
-                            ImageRequest
-                                .Builder(LocalContext.current)
-                                .data(data = Uri.parse(note.imageUri))
-                                .build()
-                        ),
-                        contentDescription = null,
-                        modifier = Modifier
-                            .fillMaxWidth(0.3f),
-                        contentScale = ContentScale.Crop
-                    )
-                }*/
+            Row() {
 
                 Column() {
                     Text(

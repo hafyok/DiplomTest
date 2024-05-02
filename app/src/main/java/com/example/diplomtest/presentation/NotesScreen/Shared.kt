@@ -5,6 +5,7 @@ import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
+import androidx.compose.ui.graphics.Color
 
 @Composable
 fun GenericAppBar(
@@ -15,7 +16,7 @@ fun GenericAppBar(
 ) {
     TopAppBar(
         title = { Text(title) },
-        backgroundColor = androidx.compose.material.MaterialTheme.colors.primary,
+        backgroundColor = Color.Transparent,
         actions = {
             IconButton(
                 onClick = {
