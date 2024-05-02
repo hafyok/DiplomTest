@@ -1,4 +1,4 @@
-package com.example.diplomtest.presentation.NotesScreen
+package com.example.diplomtest.presentation.NotesScreen.Notes
 
 import android.annotation.SuppressLint
 import android.app.Application

@@ -6,9 +6,9 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import com.example.diplomtest.presentation.NotesScreen.Constants
-import com.example.diplomtest.presentation.NotesScreen.CreateNoteScreen
-import com.example.diplomtest.presentation.NotesScreen.NoteEditScreen
+import com.example.diplomtest.presentation.NotesScreen.Notes.Constants
+import com.example.diplomtest.presentation.NotesScreen.Notes.CreateNoteScreen
+import com.example.diplomtest.presentation.NotesScreen.Notes.NoteEditScreen
 import com.example.diplomtest.presentation.NotesScreen.NotesPurposeScreen
 import com.example.diplomtest.presentation.StatsScreen.StatsContent
 import com.example.diplomtest.presentation.TimerScreen.Sound.SoundPlayerViewModel

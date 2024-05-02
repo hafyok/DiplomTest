@@ -1,4 +1,4 @@
-package com.example.diplomtest.presentation.NotesScreen
+package com.example.diplomtest.presentation.NotesScreen.Notes
 
 import android.annotation.SuppressLint
 import android.app.Application
@@ -33,7 +33,7 @@ import com.example.diplomtest.R
 import com.example.diplomtest.data.database.AppDatabase
 import com.example.diplomtest.data.database.NoteEntity
 import com.example.diplomtest.data.database.getDay
-import com.example.diplomtest.presentation.NotesScreen.Constants.orPlaceHolderList
+import com.example.diplomtest.presentation.NotesScreen.Notes.Constants.orPlaceHolderList
 import com.example.diplomtest.ui.theme.DiplomTestTheme
 import com.example.diplomtest.ui.theme.noteBGBlue
 import com.example.diplomtest.ui.theme.noteBGYellow

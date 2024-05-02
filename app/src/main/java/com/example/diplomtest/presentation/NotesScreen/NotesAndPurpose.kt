@@ -31,6 +31,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.example.diplomtest.presentation.NotesScreen.Notes.NotesList
 
 @Composable
 fun NotesPurposeScreen(navController: NavController) {

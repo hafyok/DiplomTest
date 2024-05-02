@@ -4,7 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.Index
 import androidx.room.PrimaryKey
-import com.example.diplomtest.presentation.NotesScreen.Constants
+import com.example.diplomtest.presentation.NotesScreen.Notes.Constants
 import com.example.diplomtest.domain.getDateCreated
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter

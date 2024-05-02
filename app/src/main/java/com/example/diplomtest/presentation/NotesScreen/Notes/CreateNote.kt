@@ -1,4 +1,4 @@
-package com.example.diplomtest.presentation.NotesScreen
+package com.example.diplomtest.presentation.NotesScreen.Notes
 
 import android.annotation.SuppressLint
 import android.app.Application
@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.material.TextField
 import androidx.compose.material.TextFieldDefaults
@@ -64,7 +65,7 @@ fun CreateNoteScreen(
         ) {
             androidx.compose.material.Scaffold(topBar = {
                 GenericAppBar(title = "Create Note", icon = {
-                    androidx.compose.material.Icon(
+                    Icon(
                         imageVector = ImageVector.vectorResource(R.drawable.blur),// TODO() исправить
                         contentDescription = stringResource(R.string.app_name), // TODO() исправить
                         tint = Color.Black,
