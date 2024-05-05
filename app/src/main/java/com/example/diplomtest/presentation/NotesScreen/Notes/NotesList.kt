@@ -31,8 +31,8 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.diplomtest.R
 import com.example.diplomtest.data.database.AppDatabase
-import com.example.diplomtest.data.database.NoteEntity
-import com.example.diplomtest.data.database.getDay
+import com.example.diplomtest.data.database.Entity.NoteEntity
+import com.example.diplomtest.data.database.Entity.getDay
 import com.example.diplomtest.presentation.NotesScreen.Notes.Constants.orPlaceHolderList
 import com.example.diplomtest.ui.theme.DiplomTestTheme
 import com.example.diplomtest.ui.theme.noteBGBlue

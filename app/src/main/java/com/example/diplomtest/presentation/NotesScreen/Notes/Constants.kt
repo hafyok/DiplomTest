@@ -1,6 +1,6 @@
 package com.example.diplomtest.presentation.NotesScreen.Notes
 
-import com.example.diplomtest.data.database.NoteEntity
+import com.example.diplomtest.data.database.Entity.NoteEntity
 
 object Constants {
     const val NAVIGATION_NOTES_LIST = "notesList"

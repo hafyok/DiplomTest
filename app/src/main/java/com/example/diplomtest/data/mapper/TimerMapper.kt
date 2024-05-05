@@ -1,6 +1,6 @@
 package com.example.diplomtest.data.mapper
 
-import com.example.diplomtest.data.database.TimerSessionEntity
+import com.example.diplomtest.data.database.Entity.TimerSessionEntity
 import com.example.diplomtest.domain.TimerSessionData
 
 class TimerMapper {

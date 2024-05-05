@@ -1,10 +1,11 @@
-package com.example.diplomtest.data.database
+package com.example.diplomtest.data.database.Dao
 
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import com.example.diplomtest.data.database.Entity.TimerSessionEntity
 import java.util.Date
 
 

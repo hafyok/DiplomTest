@@ -5,8 +5,18 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
+import com.example.diplomtest.data.database.Dao.NotesDao
+import com.example.diplomtest.data.database.Dao.TimerSessionDao
+import com.example.diplomtest.data.database.Dao.TodoDao
+import com.example.diplomtest.data.database.Entity.NoteEntity
+import com.example.diplomtest.data.database.Entity.TimerSessionEntity
+import com.example.diplomtest.data.database.Entity.TodoEntity
 
-@Database(entities = [TimerSessionEntity::class, NoteEntity::class], version = 1, exportSchema = false)
+@Database(
+    entities = [TimerSessionEntity::class, NoteEntity::class, TodoEntity::class],
+    version = 1,
+    exportSchema = false
+)
 @TypeConverters(DateConverter::class)
 abstract class AppDatabase : RoomDatabase() {
     companion object {
@@ -36,5 +46,6 @@ abstract class AppDatabase : RoomDatabase() {
 
     abstract fun timerSessionDao(): TimerSessionDao
     abstract fun notesDao(): NotesDao
+    abstract fun todoDao(): TodoDao
 
 }

@@ -37,7 +37,7 @@ import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import com.example.diplomtest.R
 import com.example.diplomtest.data.database.AppDatabase
-import com.example.diplomtest.data.database.NoteEntity
+import com.example.diplomtest.data.database.Entity.NoteEntity
 import com.example.diplomtest.ui.theme.DiplomTestTheme
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

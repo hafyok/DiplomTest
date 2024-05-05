@@ -3,8 +3,8 @@ package com.example.diplomtest.presentation.NotesScreen.Notes
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.diplomtest.data.database.NoteEntity
-import com.example.diplomtest.data.database.NotesDao
+import com.example.diplomtest.data.database.Entity.NoteEntity
+import com.example.diplomtest.data.database.Dao.NotesDao
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 

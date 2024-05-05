@@ -1,4 +1,4 @@
-package com.example.diplomtest.data.database
+package com.example.diplomtest.data.database.Entity
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

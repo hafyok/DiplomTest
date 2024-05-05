@@ -7,7 +7,7 @@ import co.yml.charts.axis.DataCategoryOptions
 import co.yml.charts.common.model.Point
 import co.yml.charts.ui.barchart.models.BarChartType
 import co.yml.charts.ui.barchart.models.BarData
-import com.example.diplomtest.data.database.TimerSessionDao
+import com.example.diplomtest.data.database.Dao.TimerSessionDao
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.util.Date
