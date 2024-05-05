@@ -29,7 +29,7 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.diplomtest.R
-import com.example.diplomtest.domain.TodoItem
+import com.example.diplomtest.domain.TodoData
 import com.example.diplomtest.ui.constants.LargeDp
 import com.example.diplomtest.ui.constants.MediumDp
 import com.example.diplomtest.ui.constants.TodoItemActionButtonRippleRadius
@@ -43,28 +43,28 @@ import com.example.diplomtest.ui.theme.TodoItemTextColor
 
 @Composable
 fun TodoItemUi(
-    todoItem: TodoItem = TodoItem(title = "Todo Item"),
+    todoData: TodoData = TodoData(title = "Todo Item"),
     //  1. Lambda Function Parameters for Flexibility
-    onItemClick: (TodoItem) -> Unit = {},
-    onItemDelete: (TodoItem) -> Unit = {}
+    onItemClick: (TodoData) -> Unit = {},
+    onItemDelete: (TodoData) -> Unit = {}
 ) {
     // 2. Adaptive Color Scheme
     val backgroundColor =
-        if (todoItem.isDone) TodoItemBackgroundColor.copy(alpha = 0.5f) else TodoItemBackgroundColor
-    val textColor = if (todoItem.isDone) TodoItemTextColor.copy(alpha = 0.5f) else TodoItemTextColor
+        if (todoData.isDone) TodoItemBackgroundColor.copy(alpha = 0.5f) else TodoItemBackgroundColor
+    val textColor = if (todoData.isDone) TodoItemTextColor.copy(alpha = 0.5f) else TodoItemTextColor
 
     // 3. Text Decoration
-    val textDecoration = if (todoItem.isDone) TextDecoration.LineThrough else null
+    val textDecoration = if (todoData.isDone) TextDecoration.LineThrough else null
 
     // 4. Dynamic Icons
     val iconId =
-        if (todoItem.isDone) R.drawable.ic_selected_check_box else R.drawable.ic_empty_check_box
+        if (todoData.isDone) R.drawable.ic_selected_check_box else R.drawable.ic_empty_check_box
     val iconColorFilter =
-        if (todoItem.isDone) ColorFilter.tint(TodoItemIconColor.copy(alpha = 0.5f)) else ColorFilter.tint(
+        if (todoData.isDone) ColorFilter.tint(TodoItemIconColor.copy(alpha = 0.5f)) else ColorFilter.tint(
             TodoItemIconColor
         )
     val iconTintColor =
-        if (todoItem.isDone) TodoItemIconColor.copy(alpha = 0.5f) else TodoItemIconColor
+        if (todoData.isDone) TodoItemIconColor.copy(alpha = 0.5f) else TodoItemIconColor
 
     Card(
         modifier = Modifier
@@ -81,7 +81,7 @@ fun TodoItemUi(
                 .clickable(
                     interactionSource = remember { MutableInteractionSource() },
                     indication = rememberRipple(bounded = true)
-                ) { onItemClick(todoItem) },
+                ) { onItemClick(todoData) },
             verticalAlignment = Alignment.CenterVertically,
         ) {
             Image(
@@ -93,7 +93,7 @@ fun TodoItemUi(
                 colorFilter = iconColorFilter
             )
             Text(
-                text = todoItem.title,
+                text = todoData.title,
                 modifier = Modifier.weight(1f),
                 style = TodoItemTitleTextStyle.copy(color = textColor),
                 maxLines = 1,
@@ -102,7 +102,7 @@ fun TodoItemUi(
             )
             // 6. IconButton for Deletion
             IconButton(
-                onClick = { onItemDelete(todoItem) },
+                onClick = { onItemDelete(todoData) },
                 modifier = Modifier.size(TodoItemActionButtonRippleRadius)
             ) {
                 Icon(
@@ -123,9 +123,9 @@ fun TodoItemUiPreview() {
         modifier = Modifier.padding(MediumDp),
         verticalArrangement = Arrangement.spacedBy(MediumDp)
     ) {
-        TodoItemUi(todoItem = TodoItem(title = "Todo Item 1"))
-        TodoItemUi(todoItem = TodoItem(title = "Todo Item 2", isDone = true))
-        TodoItemUi(todoItem = TodoItem(title = "Todo Item 3"))
-        TodoItemUi(todoItem = TodoItem(title = "Todo Item 4", isDone = true))
+        TodoItemUi(todoData = TodoData(title = "Todo Item 1"))
+        TodoItemUi(todoData = TodoData(title = "Todo Item 2", isDone = true))
+        TodoItemUi(todoData = TodoData(title = "Todo Item 3"))
+        TodoItemUi(todoData = TodoData(title = "Todo Item 4", isDone = true))
     }
 }
