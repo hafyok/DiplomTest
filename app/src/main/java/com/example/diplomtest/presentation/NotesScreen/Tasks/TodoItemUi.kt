@@ -29,7 +29,7 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.diplomtest.R
-import com.example.diplomtest.domain.TodoData
+import com.example.diplomtest.data.database.Entity.TodoEntity
 import com.example.diplomtest.ui.constants.LargeDp
 import com.example.diplomtest.ui.constants.MediumDp
 import com.example.diplomtest.ui.constants.TodoItemActionButtonRippleRadius
@@ -43,10 +43,10 @@ import com.example.diplomtest.ui.theme.TodoItemTextColor
 
 @Composable
 fun TodoItemUi(
-    todoData: TodoData = TodoData(title = "Todo Item"),
+    todoData: TodoEntity = TodoEntity(title = "Todo Item"),
     //  1. Lambda Function Parameters for Flexibility
-    onItemClick: (TodoData) -> Unit = {},
-    onItemDelete: (TodoData) -> Unit = {}
+    onItemClick: (TodoEntity) -> Unit = {},
+    onItemDelete: (TodoEntity) -> Unit = {}
 ) {
     // 2. Adaptive Color Scheme
     val backgroundColor =
@@ -123,9 +123,9 @@ fun TodoItemUiPreview() {
         modifier = Modifier.padding(MediumDp),
         verticalArrangement = Arrangement.spacedBy(MediumDp)
     ) {
-        TodoItemUi(todoData = TodoData(title = "Todo Item 1"))
-        TodoItemUi(todoData = TodoData(title = "Todo Item 2", isDone = true))
-        TodoItemUi(todoData = TodoData(title = "Todo Item 3"))
-        TodoItemUi(todoData = TodoData(title = "Todo Item 4", isDone = true))
+        TodoItemUi(todoData = TodoEntity(title = "Todo Item 1"))
+        TodoItemUi(todoData = TodoEntity(title = "Todo Item 2", isDone = true))
+        TodoItemUi(todoData = TodoEntity(title = "Todo Item 3"))
+        TodoItemUi(todoData = TodoEntity(title = "Todo Item 4", isDone = true))
     }
 }

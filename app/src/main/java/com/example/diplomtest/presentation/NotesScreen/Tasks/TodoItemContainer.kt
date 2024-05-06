@@ -13,7 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.example.diplomtest.domain.TodoData
+import com.example.diplomtest.data.database.Entity.TodoEntity
 import com.example.diplomtest.ui.constants.MediumDp
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
@@ -21,9 +21,9 @@ import kotlinx.coroutines.flow.flowOf
 @Composable
 fun TodoItemsContainer(
     modifier: Modifier = Modifier,
-    todoItemsFlow: Flow<List<TodoData>> = flowOf(listOf()),
-    onItemClick: (TodoData) -> Unit = {},
-    onItemDelete: (TodoData) -> Unit = {},
+    todoItemsFlow: Flow<List<TodoEntity>> = flowOf(listOf()),
+    onItemClick: (TodoEntity) -> Unit = {},
+    onItemDelete: (TodoEntity) -> Unit = {},
     overlappingElementsHeight: Dp = 0.dp
 ) {
     // 1. Flow Data Collection
@@ -53,10 +53,10 @@ fun TodoItemsContainerPreview() {
     TodoItemsContainer(
         todoItemsFlow = flowOf(
             listOf(
-                TodoData(title = "Todo Item 1", isDone = true),
-                TodoData(title = "Todo Item 2"),
-                TodoData(title = "Todo Item 3"),
-                TodoData(title = "Todo Item 4", isDone = true),
+                TodoEntity(title = "Todo Item 1", isDone = true),
+                TodoEntity(title = "Todo Item 2"),
+                TodoEntity(title = "Todo Item 3"),
+                TodoEntity(title = "Todo Item 4", isDone = true),
             )
         )
     )
