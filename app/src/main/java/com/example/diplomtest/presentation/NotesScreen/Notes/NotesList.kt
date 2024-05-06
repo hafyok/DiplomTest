@@ -87,9 +87,6 @@ fun NotesList(navController: NavController) {
                         icon = R.drawable.ic_create_note
                     )
                 },
-                bottomBar = {
-                    com.example.diplomtest.presentation.Navigation.BottomNavigation(navController = navController)
-                }
 
             ) {
                 Column {

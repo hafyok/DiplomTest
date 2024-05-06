@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material.icons.Icons
@@ -15,6 +16,7 @@ import androidx.compose.material.icons.automirrored.outlined.Notes
 import androidx.compose.material.icons.filled.TaskAlt
 import androidx.compose.material.icons.outlined.TaskAlt
 import androidx.compose.material3.Icon
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Tab
 import androidx.compose.material3.TabRow
 import androidx.compose.material3.Text
@@ -28,6 +30,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.navigation.NavController
+import com.example.diplomtest.presentation.Navigation.BottomNavigation
 import com.example.diplomtest.presentation.NotesScreen.Notes.NotesList
 import com.example.diplomtest.presentation.NotesScreen.Tasks.TaskScreen
 
@@ -57,44 +60,55 @@ fun NotesPurposeScreen(navController: NavController) {
 
     }
 
-    Column(modifier = Modifier.fillMaxSize()) {
-
-        TabRow(selectedTabIndex = selectedTabIndex) {
-            tabItems.forEachIndexed { index, item ->
-                Tab(
-                    selected = index == selectedTabIndex,
-                    onClick = { selectedTabIndex = index },
-                    text = { Text(text = item.title) },
-                    icon = {
-                        Icon(
-                            imageVector = if (index == selectedTabIndex) {
-                                item.selectedIcon
-                            } else {
-                                item.unselectedIcon
-                            }, contentDescription = item.title
-                        )
-                    },
-
-                    )
-            }
-        }
-
-        HorizontalPager(
-            state = pagerState,
-            modifier = Modifier
-                .fillMaxWidth()
-                .weight(1f)
-        ) { index ->
-            Box(
-                modifier = Modifier
-                    .fillMaxSize(),
-                contentAlignment = Alignment.Center
+    Scaffold(
+        content = { paddingValues ->
+            Column(modifier = Modifier
+                .fillMaxSize()
+                .padding(paddingValues)
             ) {
-                tabItems[index].content() // передача параметра index
+                TabRow(selectedTabIndex = selectedTabIndex) {
+                    tabItems.forEachIndexed { index, item ->
+                        Tab(
+                            selected = index == selectedTabIndex,
+                            onClick = { selectedTabIndex = index },
+                            text = { Text(text = item.title) },
+                            icon = {
+                                Icon(
+                                    imageVector = if (index == selectedTabIndex) {
+                                        item.selectedIcon
+                                    } else {
+                                        item.unselectedIcon
+                                    }, contentDescription = item.title
+                                )
+                            },
+
+                            )
+                    }
+                }
+
+                HorizontalPager(
+                    state = pagerState,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .weight(1f)
+                ) { index ->
+                    Box(
+                        modifier = Modifier
+                            .fillMaxSize(),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        tabItems[index].content() // передача параметра index
+                    }
+                }
+
             }
+        },
+        bottomBar = {
+            BottomNavigation(navController = navController)
         }
 
-    }
+    )
+
 
 }
 
