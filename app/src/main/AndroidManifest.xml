@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
     <application
         android:name=".App"
         android:allowBackup="true"
@@ -25,6 +27,7 @@
             </intent-filter>
         </activity>
         <service android:name=".AppTrackingService"/>
+        <service android:name=".RunningService"/>
     </application>
 
 </manifest>
