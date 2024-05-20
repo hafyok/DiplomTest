@@ -8,7 +8,7 @@ data class NoteData(
     val note: String,
     val title: String,
     val dateUpdated: String = getDateCreated(),
-    val imageUri: String? = null
+    val imageUri: String? = null //TODO() это не нужно
 )
 
 fun getDateCreated(): String {

@@ -1,9 +1,13 @@
 package com.example.diplomtest
 
+import android.Manifest
+import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
+import androidx.core.app.ActivityCompat
 import com.example.diplomtest.presentation.MainScreen
 import com.example.diplomtest.presentation.TimerScreen.Sound.SoundPlayerViewModel
 import com.example.diplomtest.presentation.TimerScreen.Sound.SoundPlayerViewModelFactory
@@ -16,17 +20,31 @@ class MainActivity : ComponentActivity() {
     private val soundPlayerViewModel: SoundPlayerViewModel by viewModels { SoundPlayerViewModelFactory(this) }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU){
             ActivityCompat.requestPermissions(
                 this,
-                arrayOf(Manifest.permission.POST_NOTIFICATION),
+                arrayOf(Manifest.permission.POST_NOTIFICATIONS),
             0
             )
-        }*/
+        }
         setContent {
             DiplomTestTheme {
                 MainScreen(countDownTimerViewModel, soundPlayerViewModel)
             }
+        }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        startForegroundService()
+    }
+
+    private fun startForegroundService() {
+        val serviceIntent = Intent(this, MyForegroundService::class.java)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            startForegroundService(serviceIntent)
+        } else {
+            startService(serviceIntent)
         }
     }
 }
