@@ -10,4 +10,8 @@
     <string name="clear_search">Clear search</string>
 
     <string name="todo_input_bar_hint">Write your todo</string>
+    
+    <string name="you_out">You\'re out!</string>
+    <string name="please_back">Please go back to the app</string>
+    <string name="warning">warning</string>
 </resources>
