@@ -34,8 +34,13 @@ class MainActivity : ComponentActivity() {
         }
     }
 
-    override fun onPause() {
-        super.onPause()
+    override fun onStart() {
+        super.onStart()
+        stopForegroundService()
+    }
+
+    override fun onStop() {
+        super.onStop()
         startForegroundService()
     }
 
@@ -46,5 +51,10 @@ class MainActivity : ComponentActivity() {
         } else {
             startService(serviceIntent)
         }
+    }
+
+    private fun stopForegroundService() {
+        val serviceIntent = Intent(this, MyForegroundService::class.java)
+        stopService(serviceIntent)
     }
 }

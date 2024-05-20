@@ -28,6 +28,13 @@ class MyForegroundService : Service() {
         return null
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        stopForeground(true)
+        val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+        notificationManager.cancel(1)
+    }
+
     private fun createNotificationChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val channel = NotificationChannel(
@@ -42,7 +49,6 @@ class MyForegroundService : Service() {
             notificationManager.createNotificationChannel(channel)
         }
     }
-
 
     private fun createNotification(): Notification {
         val notificationIntent = Intent(this, MainActivity::class.java)
