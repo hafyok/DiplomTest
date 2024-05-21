@@ -10,8 +10,15 @@
     <string name="clear_search">Clear search</string>
 
     <string name="todo_input_bar_hint">Write your todo</string>
-    
+
+    <!--Уведомления-->
     <string name="you_out">You\'re out!</string>
     <string name="please_back">Please go back to the app</string>
     <string name="warning">warning</string>
+
+    <!--Почта-->
+    <string name="email_address">hafyok5777@gmail.com</string>
+    <string name="title_email">Обратная связь от пользователя</string>
+    <string name="text_email">Уважаемый разработчик! Я бы хотел указать на
+        некоторые дефекты в вашем приложении: </string>
 </resources>

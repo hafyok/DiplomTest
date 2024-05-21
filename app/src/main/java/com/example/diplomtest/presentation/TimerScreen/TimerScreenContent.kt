@@ -27,6 +27,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.example.diplomtest.R
 import com.example.diplomtest.presentation.Navigation.BottomNavigation
 import com.example.diplomtest.presentation.TimerScreen.Sound.ModalContent
 import com.example.diplomtest.presentation.TimerScreen.Sound.SoundPlayerViewModel
@@ -53,7 +54,7 @@ fun TimerScreenContent(
         ) {
 
             IconButton(onClick = {
-                sendEmail(context, "hafyok5777@gmail.com")
+                sendEmail(context)
             }) {
                 Icon(imageVector = Icons.Rounded.Feedback, contentDescription = null)
             }
@@ -97,13 +98,13 @@ fun TimerScreenContent(
 }
 
 @SuppressLint("QueryPermissionsNeeded")
-fun sendEmail(context: Context, email: String) {
+fun sendEmail(context: Context) {
     val intent = Intent(Intent.ACTION_SEND).apply {
         type = "text/plain"
-        putExtra(Intent.EXTRA_EMAIL, arrayOf(email))
+        putExtra(Intent.EXTRA_EMAIL, arrayOf(context.getString(R.string.email_address)))
         // Добавьте другие данные, например тему или текст сообщения, если нужно:
-        putExtra(Intent.EXTRA_SUBJECT, "Тема сообщения")
-        putExtra(Intent.EXTRA_TEXT, "Текст сообщения")
+        putExtra(Intent.EXTRA_SUBJECT, context.getString(R.string.title_email))
+        putExtra(Intent.EXTRA_TEXT, context.getString(R.string.text_email))
     }
 
     // Убедитесь, что есть приложение, которое может обработать этот intent
