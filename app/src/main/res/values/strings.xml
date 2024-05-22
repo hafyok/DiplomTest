@@ -21,4 +21,7 @@
     <string name="title_email">Обратная связь от пользователя</string>
     <string name="text_email">Уважаемый разработчик! Я бы хотел указать на
         некоторые дефекты в вашем приложении: </string>
+
+    <!--Экран таймера-->
+    <string name="feedback">Feedback</string>
 </resources>

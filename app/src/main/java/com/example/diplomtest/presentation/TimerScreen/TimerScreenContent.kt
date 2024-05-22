@@ -11,12 +11,12 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Headphones
 import androidx.compose.material.icons.rounded.Feedback
-import androidx.compose.material3.Button
+import androidx.compose.material3.FilledIconButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -56,7 +56,7 @@ fun TimerScreenContent(
             IconButton(onClick = {
                 sendEmail(context)
             }) {
-                Icon(imageVector = Icons.Rounded.Feedback, contentDescription = null)
+                Icon(imageVector = Icons.Rounded.Feedback, contentDescription = "Feedback")
             }
         }
         Column(
@@ -65,15 +65,15 @@ fun TimerScreenContent(
                 .padding(paddingValues)
                 .padding(16.dp),
             verticalArrangement = Arrangement.Bottom,
-            horizontalAlignment = Alignment.CenterHorizontally
+            horizontalAlignment = Alignment.End
         ) {
             Row {
                 //SoundPlayer(viewModel = soundPlayerViewModel)
-                Button(
+                FilledIconButton(
                     onClick = { isModalVisible = true },
                     modifier = Modifier.padding(8.dp),
                 ) {
-                    Text("Music")
+                    Icon(imageVector = Icons.Filled.Headphones, contentDescription = "Music")
                 }
             }
             if (isModalVisible) {
@@ -102,12 +102,10 @@ fun sendEmail(context: Context) {
     val intent = Intent(Intent.ACTION_SEND).apply {
         type = "text/plain"
         putExtra(Intent.EXTRA_EMAIL, arrayOf(context.getString(R.string.email_address)))
-        // Добавьте другие данные, например тему или текст сообщения, если нужно:
         putExtra(Intent.EXTRA_SUBJECT, context.getString(R.string.title_email))
         putExtra(Intent.EXTRA_TEXT, context.getString(R.string.text_email))
     }
 
-    // Убедитесь, что есть приложение, которое может обработать этот intent
     if (intent.resolveActivity(context.packageManager) != null) {
         context.startActivity(intent)
     }
