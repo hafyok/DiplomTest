@@ -18,6 +18,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.diplomtest.domain.TimerSessionData
+import com.example.diplomtest.presentation.TimerScreen.AnimationViewModel
 import com.example.diplomtest.presentation.TimerScreen.Category
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
@@ -25,7 +26,9 @@ import java.util.Date
 
 @Composable
 fun TimerView(
-    viewModel: CountDownTimerViewModel, timerViewModel: TimerViewModel = viewModel()
+    viewModel: CountDownTimerViewModel,
+    timerViewModel: TimerViewModel = viewModel(),
+    animationViewModel: AnimationViewModel
 ) {
     val coroutineScope = rememberCoroutineScope()
 
@@ -66,6 +69,7 @@ fun TimerView(
                         timerViewModel.insertTimer(timerData)
                         cancel()
                     }
+                    animationViewModel.startAnimation()
                 }) {
                     Text(text = if (isPlaying.value) "Stop CountDown" else "Start CountDown")
                 }

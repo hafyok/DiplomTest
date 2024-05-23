@@ -20,6 +20,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -28,9 +29,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.airbnb.lottie.compose.LottieAnimation
 import com.airbnb.lottie.compose.LottieCompositionSpec
+import com.airbnb.lottie.compose.LottieConstants
 import com.airbnb.lottie.compose.rememberLottieComposition
 import com.example.diplomtest.R
 import com.example.diplomtest.presentation.Navigation.BottomNavigation
@@ -45,7 +48,8 @@ import com.example.diplomtest.presentation.TimerScreen.Timer.TimerView
 fun TimerScreenContent(
     navController: NavController,
     countDownTimerViewModel: CountDownTimerViewModel,
-    soundPlayerViewModel: SoundPlayerViewModel
+    soundPlayerViewModel: SoundPlayerViewModel,
+    animationViewModel: AnimationViewModel = viewModel()
 ) {
     var isModalVisible by remember { mutableStateOf(false) }
     val context = LocalContext.current
@@ -53,6 +57,8 @@ fun TimerScreenContent(
     val composition by rememberLottieComposition(
         spec = LottieCompositionSpec.Asset("work_guy.json")
     )
+
+    val isPlaying by animationViewModel.isPlaying.collectAsState()
 
     Scaffold(content = { paddingValues ->
         Box(
@@ -82,6 +88,9 @@ fun TimerScreenContent(
             ) {
                 LottieAnimation(
                     composition = composition,
+                    isPlaying = isPlaying,
+                    iterations = LottieConstants.IterateForever,
+                    reverseOnRepeat = true,
                     modifier = Modifier
                         .size(200.dp)
                 )
@@ -90,7 +99,7 @@ fun TimerScreenContent(
             Column(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(16.dp),
+                    .padding(8.dp),
                 verticalArrangement = Arrangement.Bottom,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
@@ -113,7 +122,7 @@ fun TimerScreenContent(
                     )
                 }
 
-                TimerView(countDownTimerViewModel)
+                TimerView(countDownTimerViewModel, animationViewModel = animationViewModel)
 
                 Spacer(modifier = Modifier.padding(10.dp))
 
