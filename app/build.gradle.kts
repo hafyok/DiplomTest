@@ -85,4 +85,6 @@ dependencies {
     implementation ("io.coil-kt:coil-compose:2.2.2")
 
     implementation ("co.yml:ycharts:2.1.0")
+
+    implementation("com.airbnb.android:lottie-compose:6.1.0")
 }
