@@ -4,12 +4,14 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Headphones
 import androidx.compose.material.icons.rounded.Feedback
@@ -27,6 +29,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.airbnb.lottie.compose.LottieAnimation
+import com.airbnb.lottie.compose.LottieCompositionSpec
+import com.airbnb.lottie.compose.rememberLottieComposition
 import com.example.diplomtest.R
 import com.example.diplomtest.presentation.Navigation.BottomNavigation
 import com.example.diplomtest.presentation.TimerScreen.Sound.ModalContent
@@ -45,53 +50,77 @@ fun TimerScreenContent(
     var isModalVisible by remember { mutableStateOf(false) }
     val context = LocalContext.current
 
-    Scaffold(content = { paddingValues ->
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(8.dp),
-            horizontalArrangement = Arrangement.End
-        ) {
+    val composition by rememberLottieComposition(
+        spec = LottieCompositionSpec.Asset("work_guy.json")
+    )
 
-            IconButton(onClick = {
-                sendEmail(context)
-            }) {
-                Icon(imageVector = Icons.Rounded.Feedback, contentDescription = "Feedback")
-            }
-        }
-        Column(
+    Scaffold(content = { paddingValues ->
+        Box(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(paddingValues)
-                .padding(16.dp),
-            verticalArrangement = Arrangement.Bottom,
-            horizontalAlignment = Alignment.End
         ) {
-            Row {
-                //SoundPlayer(viewModel = soundPlayerViewModel)
-                FilledIconButton(
-                    onClick = { isModalVisible = true },
-                    modifier = Modifier.padding(8.dp),
-                ) {
-                    Icon(imageVector = Icons.Filled.Headphones, contentDescription = "Music")
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(8.dp),
+                horizontalArrangement = Arrangement.End,
+                verticalAlignment = Alignment.Top
+            ) {
+                IconButton(onClick = {
+                    sendEmail(context)
+                }) {
+                    Icon(imageVector = Icons.Rounded.Feedback, contentDescription = "Feedback")
                 }
             }
-            if (isModalVisible) {
-                ModalContent(
-                    onDismissRequest = { isModalVisible = false }, soundPlayerViewModel
+
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(16.dp),
+                contentAlignment = Alignment.Center
+            ) {
+                LottieAnimation(
+                    composition = composition,
+                    modifier = Modifier
+                        .size(200.dp)
                 )
             }
 
-            TimerView(countDownTimerViewModel)
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(16.dp),
+                verticalArrangement = Arrangement.Bottom,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
 
-            Spacer(modifier = Modifier.padding(10.dp))
 
-            CategoryFun()
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.End
+                ) {
+                    FilledIconButton(
+                        onClick = { isModalVisible = true },
+                        modifier = Modifier.padding(8.dp),
+                    ) {
+                        Icon(imageVector = Icons.Filled.Headphones, contentDescription = "Music")
+                    }
+                }
+                if (isModalVisible) {
+                    ModalContent(
+                        onDismissRequest = { isModalVisible = false }, soundPlayerViewModel
+                    )
+                }
 
+                TimerView(countDownTimerViewModel)
 
+                Spacer(modifier = Modifier.padding(10.dp))
+
+                CategoryFun()
+            }
         }
     },
-
         bottomBar = {
             BottomNavigation(navController = navController)
         })
