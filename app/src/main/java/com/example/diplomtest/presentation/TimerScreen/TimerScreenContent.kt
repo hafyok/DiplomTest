@@ -55,7 +55,9 @@ fun TimerScreenContent(
     val context = LocalContext.current
 
     val composition by rememberLottieComposition(
-        spec = LottieCompositionSpec.Asset("work_guy.json")
+        spec = LottieCompositionSpec.Asset(Category.currentAnimation)
+        //spec = LottieCompositionSpec.Asset("relax_guy.json")
+
     )
 
     val isPlaying by animationViewModel.isPlaying.collectAsState()

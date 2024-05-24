@@ -31,7 +31,7 @@ fun CategoryFun() {
                 modifier = Modifier
                     .padding(8.dp)
                     .clickable {
-                        Category.currentCategory = category
+                        Category.updateCategory(category)
                     },
                 elevation = 8.dp,
                 shape = RoundedCornerShape(16.dp),
