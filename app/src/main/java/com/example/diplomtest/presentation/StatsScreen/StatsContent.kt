@@ -43,6 +43,8 @@ fun StatsContent(navController: NavController) {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         DiplomTestTheme {
+            Text(text = "Статистика", fontWeight = FontWeight.Bold, fontSize = 20.sp)
+
             LineChartCard(viewModel)
             BarChartCard(viewModel)
         }
