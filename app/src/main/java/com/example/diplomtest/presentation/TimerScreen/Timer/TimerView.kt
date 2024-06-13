@@ -42,8 +42,7 @@ fun TimerView(
         viewModel.apply {
 
             Text(text = timerText.value, fontSize = 28.sp)
-
-            LinearProgressIndicator(timeLeft.toFloat() / totalTimeInMillis.toFloat())
+            LinearProgressIndicator(timeLeft.toFloat() / totalTimeInMillis.toFloat(), modifier = Modifier.padding(8.dp))
 
             Row {
                 Button(onClick = {

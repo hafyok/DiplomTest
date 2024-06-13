@@ -60,10 +60,6 @@ fun LineChartCard(viewModel: StatsViewModel) {
     }
 
     LaunchedEffect(key1 = true) {
-
-        /*val max = getMax(pointsList)
-        val min = getMin(pointsList)
-        Log.d("MaxMin", "Max: $max Min: $min")*/
         xAxisData = AxisData.Builder()
             .axisStepSize(50.dp)
             .backgroundColor(Color.Transparent)
